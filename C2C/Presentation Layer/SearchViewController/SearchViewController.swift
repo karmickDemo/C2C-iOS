@@ -87,6 +87,7 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tblvw_Search.alwaysBounceVertical = false
         
         rangeSlider1.trackHighlightTintColor = UIColor(red:250/255, green:192/255, blue:77/255, alpha:1)
         rangeSlider1.curvaceousness = 25.0
@@ -287,8 +288,6 @@ class SearchViewController: UIViewController {
 //            self.navigationController?.popViewController(animated: true)
 //        }
     self.navigationController?.popViewController(animated: false)
-
-        
     }
     
     private func doneEditing(tag: Int, str: String, indexDropDown: Int) -> Void{

@@ -65,7 +65,9 @@ class SetPreferencesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tblvw_Preference.delegate = self
+        self.tblvw_Preference.dataSource = self
+        self.tblvw_Preference.alwaysBounceVertical = false
         self.tblvw_Preference.isHidden = true
         
         let dic1 = [

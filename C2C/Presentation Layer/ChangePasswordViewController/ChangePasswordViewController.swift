@@ -15,11 +15,11 @@ extension ChangePasswordViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-     func textFieldDidBeginEditing(_ textField: UITextField)
+    func textFieldDidBeginEditing(_ textField: UITextField)
     {
         textField.becomeFirstResponder()
     }
- 
+    
 }
 
 class ChangePasswordViewController: UIViewController {
@@ -37,10 +37,11 @@ class ChangePasswordViewController: UIViewController {
     @IBOutlet var btn_menu: UIButton!
     @IBOutlet var btn_update: UIButton!
     var user_id: Int?
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tblvw_ChangePassword.alwaysBounceVertical = false
         
         self.vw1.layer.borderWidth = 1
         self.vw1.layer.borderColor = UIColor(red:133/255, green:133/255, blue:133/255, alpha: 1).cgColor
@@ -64,10 +65,10 @@ class ChangePasswordViewController: UIViewController {
         self.txtfld_NewConfirmPassword.delegate = self
         user_id =  UserDefaults.standard.integer(forKey: "user_id")
         print(user_id)
-
-
+        
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -98,8 +99,7 @@ class ChangePasswordViewController: UIViewController {
     private func updatePasswordUrlFire () {
         
         let parameters : Parameters = [
-//            "user_id": String(user_id!),
-            "user_id": "68",
+            "user_id": String(user_id!),
             "pass_old": self.txtfld_OldPassword!.text!,
             "pass_new": self.txtfld_NewPassword!.text!,
             ]
@@ -125,3 +125,4 @@ class ChangePasswordViewController: UIViewController {
         }
     }
 }
+

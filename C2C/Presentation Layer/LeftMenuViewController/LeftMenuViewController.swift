@@ -100,7 +100,7 @@ class LeftMenuViewController: UIViewController {
                 "text": "My Profile",
                 ]
             let dic3 = [
-                "image": "settingMenu",
+                "image": "changePwd",
                 "text": "Change Password",
                 ]
             let dic4 = [
@@ -205,6 +205,14 @@ class LeftMenuViewController: UIViewController {
                     viewController!.navigationController?.pushViewController(myProfileViewController, animated: true)
                 }
             } else if indexPath.row == 2 {
+                if viewControllerCurrent.isKind(of: SettingsViewController.self) {
+                    
+                } else {
+                    
+                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                    let mSettingsViewController = storyBoard.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+                    viewController!.navigationController?.pushViewController(mSettingsViewController, animated: true)
+                }
                 
             } else if indexPath.row == 3 {
                 if viewControllerCurrent.isKind(of: ChangePasswordViewController.self) {

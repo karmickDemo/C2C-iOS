@@ -29,5 +29,7 @@ class URLs {
     static let changePasswordURL = mainURL + "chnage_password"
     static let getPrefferencesURL = mainURL + "get_prefferences"
     static let updatePreferenceURL = mainURL + "update_preference"
+    static let getSettingsURL = mainURL + "get_settings"
+    static let updateSettingsURL = mainURL + "update_settings"
     
 }

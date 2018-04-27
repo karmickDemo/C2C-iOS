@@ -63,6 +63,10 @@
 		4E2257A920765E23007C6073 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E2257B420765E23007C6073 /* nanopb.framework */; };
 		4E2257AA20765E23007C6073 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E2257B520765E23007C6073 /* ObjectMapper.framework */; };
 		4E2257AB20765E23007C6073 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E2257B620765E23007C6073 /* SwiftyJSON.framework */; };
+		4E266C332093464700322A1A /* DealListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E266C2C2093464400322A1A /* DealListingViewController.swift */; };
+		4E266C342093464700322A1A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E266C2E2093464500322A1A /* SettingsViewController.swift */; };
+		4E266C352093464700322A1A /* MyOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E266C302093464600322A1A /* MyOffersViewController.swift */; };
+		4E266C362093464700322A1A /* WishListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E266C322093464600322A1A /* WishListViewController.swift */; };
 		4E5823CF207DE95D004496BC /* WARangeSlider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5823D0207DE95D004496BC /* WARangeSlider.framework */; };
 		4E726EA8207B841E00EF9382 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E726EA5207B841D00EF9382 /* MyProfileViewController.swift */; };
 		4E726EA9207B841E00EF9382 /* AdvancePropertyDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E726EA7207B841D00EF9382 /* AdvancePropertyDetailsViewController.swift */; };
@@ -160,6 +164,10 @@
 		4E2257B420765E23007C6073 /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E2257B520765E23007C6073 /* ObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E2257B620765E23007C6073 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E266C2C2093464400322A1A /* DealListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DealListingViewController.swift; sourceTree = "<group>"; };
+		4E266C2E2093464500322A1A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		4E266C302093464600322A1A /* MyOffersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOffersViewController.swift; sourceTree = "<group>"; };
+		4E266C322093464600322A1A /* WishListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListViewController.swift; sourceTree = "<group>"; };
 		4E3FDFDF2074E0640096C060 /* C2C.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = C2C.entitlements; sourceTree = "<group>"; };
 		4E5823D0207DE95D004496BC /* WARangeSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WARangeSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E726EA5207B841D00EF9382 /* MyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
@@ -354,6 +362,38 @@
 			path = "Terms&ConditionsViewController";
 			sourceTree = "<group>";
 		};
+		4E266C2B2093464400322A1A /* DealListingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4E266C2C2093464400322A1A /* DealListingViewController.swift */,
+			);
+			path = DealListingViewController;
+			sourceTree = "<group>";
+		};
+		4E266C2D2093464500322A1A /* SettingsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4E266C2E2093464500322A1A /* SettingsViewController.swift */,
+			);
+			path = SettingsViewController;
+			sourceTree = "<group>";
+		};
+		4E266C2F2093464600322A1A /* MyOffersViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4E266C302093464600322A1A /* MyOffersViewController.swift */,
+			);
+			path = MyOffersViewController;
+			sourceTree = "<group>";
+		};
+		4E266C312093464600322A1A /* WishListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4E266C322093464600322A1A /* WishListViewController.swift */,
+			);
+			path = WishListViewController;
+			sourceTree = "<group>";
+		};
 		4E726EA4207B841D00EF9382 /* MyProfileViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -493,6 +533,10 @@
 		CD17A26A2074D918000D6FA0 /* Presentation Layer */ = {
 			isa = PBXGroup;
 			children = (
+				4E266C2B2093464400322A1A /* DealListingViewController */,
+				4E266C2F2093464600322A1A /* MyOffersViewController */,
+				4E266C2D2093464500322A1A /* SettingsViewController */,
+				4E266C312093464600322A1A /* WishListViewController */,
 				4EEC5CCA2091DD9C00596028 /* ChangePasswordViewController */,
 				4EEC5CCC2091DD9C00596028 /* SetPreferencesViewController */,
 				4EEC5CCE2091DD9D00596028 /* TransactionViewController */,
@@ -966,16 +1010,19 @@
 				4EEC5CD22091DD9E00596028 /* TransactionViewController.swift in Sources */,
 				4E726EA9207B841E00EF9382 /* AdvancePropertyDetailsViewController.swift in Sources */,
 				4E0076D720778AFB002250A1 /* English OpenSans-SemiboldItalic.ttf in Sources */,
+				4E266C332093464700322A1A /* DealListingViewController.swift in Sources */,
 				4E0076D820778AFB002250A1 /* OpenSans-Bold.ttf in Sources */,
 				4E0076D920778AFB002250A1 /* OpenSans-Light.ttf in Sources */,
 				CD6496F22088AF1000188F8E /* PopupOneOptionViewController.swift in Sources */,
 				CD82360A207F346F007A4F50 /* LeftMenuViewController.swift in Sources */,
+				4E266C342093464700322A1A /* SettingsViewController.swift in Sources */,
 				4E0076DA20778AFB002250A1 /* OpenSans-Regular.ttf in Sources */,
 				4EE69ECA207F268F006F8B81 /* SearchDetailsViewController.swift in Sources */,
 				4E0076DB20778AFB002250A1 /* OpenSans-Semibold.ttf in Sources */,
 				4E0076CA20773C46002250A1 /* LoginViewController.swift in Sources */,
 				4E0076C220773C3A002250A1 /* Utility.swift in Sources */,
 				4E1934902085C18500E4EE84 /* CommunicationsViewController.swift in Sources */,
+				4E266C362093464700322A1A /* WishListViewController.swift in Sources */,
 				4E0076C920773C46002250A1 /* RegistrationSellerViewController.swift in Sources */,
 				4E1477762088692F001CBB9E /* PopupListingViewController.swift in Sources */,
 				CD7AAE512090BACA00DCC955 /* SellerPropertiesViewController.swift in Sources */,
@@ -984,6 +1031,7 @@
 				CD5C044D2084A91200B1F47E /* StringFile.swift in Sources */,
 				CD777FD52074D52D00119980 /* ViewController.swift in Sources */,
 				4E14777320885E63001CBB9E /* imagePickerHelper.swift in Sources */,
+				4E266C352093464700322A1A /* MyOffersViewController.swift in Sources */,
 				4E0076DE20779292002250A1 /* DashBoardViewController.swift in Sources */,
 				CD777FD32074D52D00119980 /* AppDelegate.swift in Sources */,
 				4E1934912085C18500E4EE84 /* Terms&ConditionsViewController.swift in Sources */,

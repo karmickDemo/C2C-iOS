@@ -127,7 +127,7 @@ extension DashBoardViewController : UICollectionViewDelegateFlowLayout,UICollect
                         print("iphone 5")
                         cell?.lbl_HeadingName_Dashboard_long.font = UIFont(name:  (cell?.lbl_HeadingName_Dashboard_long.font.fontName)!, size: 11)
                     } else {
-                        cell?.lbl_HeadingName_Dashboard_long.font = UIFont(name:  (cell?.lbl_HeadingName_Dashboard_long.font.fontName)!, size: 16)
+                        cell?.lbl_HeadingName_Dashboard_long.font = UIFont(name:  (cell?.lbl_HeadingName_Dashboard_long.font.fontName)!, size: 13)
                     }
                 
                     return cell!
@@ -144,9 +144,9 @@ extension DashBoardViewController : UICollectionViewDelegateFlowLayout,UICollect
                 
                 if (Device.IS_IPHONE_5){
                     print("iphone 5")
-                    cell?.lbl_HeadingName_Dashboard.font = UIFont(name:  (cell?.lbl_HeadingName_Dashboard.font.fontName)!, size: 12)
+                    cell?.lbl_HeadingName_Dashboard.font = UIFont(name:  (cell?.lbl_HeadingName_Dashboard.font.fontName)!, size: 11)
                 } else {
-                    cell?.lbl_HeadingName_Dashboard.font = UIFont(name:  (cell?.lbl_HeadingName_Dashboard.font.fontName)!, size: 20)
+                    cell?.lbl_HeadingName_Dashboard.font = UIFont(name:  (cell?.lbl_HeadingName_Dashboard.font.fontName)!, size: 13)
                 }
                 print("font size===\(String(describing: cell?.lbl_HeadingName_Dashboard.font))")
 
@@ -167,6 +167,9 @@ extension DashBoardViewController : UICollectionViewDelegateFlowLayout,UICollect
                     self.navigationController?.pushViewController(mDashBoardViewController, animated: false)
                     break
                 case indexPath.row == 1 :
+                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                    let mWishListViewController = storyBoard.instantiateViewController(withIdentifier: "WishListViewController") as! WishListViewController
+                    self.navigationController?.pushViewController(mWishListViewController, animated: false)
                     break
                 case indexPath.row == 2 :
                     let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
@@ -178,22 +181,27 @@ extension DashBoardViewController : UICollectionViewDelegateFlowLayout,UICollect
                     let mDashBoardViewController = storyBoard.instantiateViewController(withIdentifier: "CommunicationsViewController") as! CommunicationsViewController
                     self.navigationController?.pushViewController(mDashBoardViewController, animated: false)
                     break
-                
                 case indexPath.row == 4 :
                     let mSetPreferencesViewController = instantiateViewController(storyboardID: "SetPreferencesViewController") as! SetPreferencesViewController
                     self.navigationController?.pushViewController(mSetPreferencesViewController, animated: false)
                     break
                 case indexPath.row == 5 :
+                    let mMyOffersViewController = instantiateViewController(storyboardID: "MyOffersViewController") as! MyOffersViewController
+                    self.navigationController?.pushViewController(mMyOffersViewController, animated: false)
                     break
-                case indexPath.row == 6 :
-                    break
-                default : break
+            default :
+                let mDealListingViewController = instantiateViewController(storyboardID: "DealListingViewController") as! DealListingViewController
+                self.navigationController?.pushViewController(mDealListingViewController, animated: false)
+                break
             }
-            
         } else {
+            
             switch true
             {
             case indexPath.row == 0 :
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let mSellerPropertiesViewController = storyBoard.instantiateViewController(withIdentifier: "SellerPropertiesViewController") as! SellerPropertiesViewController
+                self.navigationController?.pushViewController(mSellerPropertiesViewController, animated: false)
                 break
             case indexPath.row == 1 :
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
@@ -207,19 +215,20 @@ extension DashBoardViewController : UICollectionViewDelegateFlowLayout,UICollect
                 self.navigationController?.pushViewController(mDashBoardViewController, animated: false)
                 break
                 
-            case indexPath.row == 3 : break
-            case indexPath.row == 4 : break
-            default : break
-                
+            case indexPath.row == 3 :
+                let mMyOffersViewController = instantiateViewController(storyboardID: "MyOffersViewController") as! MyOffersViewController
+                self.navigationController?.pushViewController(mMyOffersViewController, animated: false)
+                break
+            default :
+                let mDealListingViewController = instantiateViewController(storyboardID: "DealListingViewController") as! DealListingViewController
+                self.navigationController?.pushViewController(mDealListingViewController, animated: false)
+                break
             }
             
         }
         
     }
 }
-
-
-
 
 class DashBoardViewController: UIViewController {
 
