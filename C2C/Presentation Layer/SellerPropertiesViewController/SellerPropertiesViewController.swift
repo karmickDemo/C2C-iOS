@@ -122,7 +122,7 @@ class SellerPropertiesViewController: UIViewController {
     }
     
     @IBAction func addPropertiesBtnAction(_ sender: Any) {
-        let vc = instantiateViewController(storyboardID: "") as! AdvancePropertyDetailsViewController
+        let vc = instantiateViewController(storyboardID: "AdvancePropertyDetailsViewController") as! AdvancePropertyDetailsViewController
         vc.pageFrom = "propertyList"
         self.navigationController?.pushViewController(vc, animated: true)
     }
