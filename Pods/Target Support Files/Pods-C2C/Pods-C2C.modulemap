@@ -1,0 +1,6 @@
+framework module Pods_C2C {
+  umbrella header "Pods-C2C-umbrella.h"
+
+  export *
+  module * { export * }
+}
