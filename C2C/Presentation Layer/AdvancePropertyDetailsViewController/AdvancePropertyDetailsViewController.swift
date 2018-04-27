@@ -141,7 +141,7 @@ class AdvancePropertyDetailsViewController: UIViewController {
     }
 
     @IBAction func backBtnAction(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: false)
     }
     
     override func didReceiveMemoryWarning() {

@@ -124,11 +124,11 @@ class SellerPropertiesViewController: UIViewController {
     @IBAction func addPropertiesBtnAction(_ sender: Any) {
         let vc = instantiateViewController(storyboardID: "AdvancePropertyDetailsViewController") as! AdvancePropertyDetailsViewController
         vc.pageFrom = "propertyList"
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
     @IBAction func backBtnAction(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: false)
     }
     
 
