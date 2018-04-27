@@ -20,6 +20,7 @@ extension ChangePasswordViewController: UITextFieldDelegate {
         textField.becomeFirstResponder()
     }
  
+    
 }
 
 class ChangePasswordViewController: UIViewController {
@@ -40,7 +41,10 @@ class ChangePasswordViewController: UIViewController {
 
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        print("Hello World")
         
         self.vw1.layer.borderWidth = 1
         self.vw1.layer.borderColor = UIColor(red:133/255, green:133/255, blue:133/255, alpha: 1).cgColor
