@@ -259,6 +259,9 @@ class AdvancePropertyDetailsViewController: UIViewController {
         } else if ((contentArr[3]["text"] as! String).isBlank) {
             TTGSnackbarConfiguration.snackbarConfiguration(message: "Please select a Country.", duration: TTGSnackbarDuration.middle)
         } else {
+            
+            self.keyboardDown()
+            
             self.submitProperty()
         }
     }
@@ -341,6 +344,9 @@ class AdvancePropertyDetailsViewController: UIViewController {
     }
     
     @IBAction func btn_legalDocuments_click(_ sender: Any) {
+        
+        self.keyboardDown()
+        
         ImagePickerViewController.showImagePicker(onParentViewController: self) { (selectedString, selectedindex) in
             print("\(selectedString as String?)")
             print("\(selectedindex as NSInteger?)")
@@ -372,6 +378,8 @@ class AdvancePropertyDetailsViewController: UIViewController {
     }
     
     @IBAction func btn_CreditImages_Click(_ sender: Any) {
+        
+        self.keyboardDown()
         
         let vc = BSImagePickerViewController()
         
@@ -405,13 +413,13 @@ class AdvancePropertyDetailsViewController: UIViewController {
         
         print("SelectedAssets.count==\(SelectedAssets.count)")
         if is1stCredit {
-            for i in 0..<phassetCount{
+            for i in (0..<phassetCount).reversed(){
                 self.SelectedAssets.remove(at: i)
             }
             self.is1stCredit = false
         }
         else{
-            
+//            [27268 bytes, 65219 bytes, 66365 bytes, 69143 bytes]
         }
         
         print("get all images method called here")

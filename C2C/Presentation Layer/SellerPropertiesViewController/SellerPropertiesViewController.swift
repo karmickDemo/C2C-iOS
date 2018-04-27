@@ -79,11 +79,23 @@ class SellerPropertiesViewController: UIViewController {
     @IBOutlet var tblvw_SellerProperties: UITableView!
     override func viewDidLoad() {
         
-        self.getSellerProperties()
-        
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+    
+        super.viewWillAppear(animated)
+        self.getSellerProperties()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        super.viewDidDisappear(animated)
+        self.tblvw_SellerProperties.delegate = nil
+        self.tblvw_SellerProperties.dataSource = nil
+        
     }
     
     private func getSellerProperties() {

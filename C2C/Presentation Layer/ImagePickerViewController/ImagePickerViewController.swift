@@ -10,12 +10,14 @@ import UIKit
 
 
 extension UIImagePickerController {
+    
     open override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         self.navigationBar.topItem?.rightBarButtonItem?.tintColor = UIColor.black
         self.navigationBar.topItem?.rightBarButtonItem?.isEnabled = true
     }
 }
+
 class ImagePickerViewController: UIViewController {
     
     @IBOutlet var vw_alpha: UIView!
@@ -33,14 +35,26 @@ class ImagePickerViewController: UIViewController {
     var didSelect: ((_ selectedItem: String, _ index: Int?) -> Void)?
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         btn_Cancel.layer.cornerRadius = 10.5
         btn_Cancel.clipsToBounds = true
+        
         vw_actionsheet.layer.cornerRadius = 10.5
         vw_actionsheet.clipsToBounds = true
-        self.vw_alpha.alpha = 0
-        self.vw_ActionsheetBckgrdVW.transform = CGAffineTransform(translationX: 0, y: screenHeight)
         
+        self.vw_alpha.alpha = 0
+        self.btn_Cancel.transform = CGAffineTransform(translationX: 0, y: screenHeight)
+        self.vw_actionsheet.transform = CGAffineTransform(translationX: 0, y: screenHeight)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        self.vw_ActionsheetBckgrdVW.addGestureRecognizer(tap)
+        self.vw_ActionsheetBckgrdVW.isUserInteractionEnabled = true
+    }
+    
+    @objc private func handleTap(_ sender: UITapGestureRecognizer) {
+        self.cancelPopup()
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,10 +82,15 @@ class ImagePickerViewController: UIViewController {
         viewcontrollerr = parentViewController
         
         UIView.animate(withDuration: 0.3, animations: {
-            self.vw_ActionsheetBckgrdVW.transform = .identity
+            self.btn_Cancel.transform = .identity
             self.vw_alpha.alpha = 0.7
         }) { (_) in
-            
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
+                
+                self.vw_actionsheet.transform = .identity
+            }) { _ in
+                
+            }
         }
     }
 

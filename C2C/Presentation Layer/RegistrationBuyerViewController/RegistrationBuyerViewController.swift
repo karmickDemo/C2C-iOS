@@ -425,11 +425,15 @@ class RegistrationBuyerViewController: UIViewController {
         } else if ((contentArr[3]["text"] as! String).isBlank) {
             TTGSnackbarConfiguration.snackbarConfiguration(message: "Password field can not be blank", duration: TTGSnackbarDuration.middle)
         } else {
+            
+            self.keyboardDown()
             self.submitRegisterBuyerAction()
         }
     }
    
     @IBAction func btn_pickImgForIdProof_Click(_ sender: Any) {
+        
+        self.keyboardDown()
         
         ImagePickerViewController.showImagePicker(onParentViewController: self) { (selectedString, selectedindex) in
             print("\(selectedString as String?)")
@@ -465,6 +469,8 @@ class RegistrationBuyerViewController: UIViewController {
     }
     
     @IBAction func btn_pickImgForTradeLicense_Click(_ sender: Any) {
+        
+        self.keyboardDown()
         
         ImagePickerViewController.showImagePicker(onParentViewController: self) { (selectedString, selectedindex) in
             print("\(selectedString as String?)")

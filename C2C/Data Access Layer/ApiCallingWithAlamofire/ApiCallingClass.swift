@@ -250,25 +250,25 @@ class ApiCallingClass {
                         multipartFormData.append(data_id_proof, withName: "seller_upload_doc", fileName: "seller_upload_doc.png", mimeType: "image/png")
                     }
                     
-                    for i in 1...imageArr.count {
+                    for i in 0..<imageArr.count {
                         
                         print ("counter : \(i)")
                         
-                        let pathName = "prop_images" + String(i)
+                        let pathName = "prop_images" + String(i+1)
                         let imageName = pathName + ".png"
                         
                         
                         print ("pathname : \(pathName)")
                         
-                        print ("image data : \(imageArr[i-1] )")
+                        print ("image data : \(imageArr[i] )")
                         
                         var imgData: Data?
                         
-                        imgData = imageArr[i-1]
+                        imgData = imageArr[i]
                         
-                        print ("image data : \(imageArr[i-1])")
+                        print ("image data : \(imageArr[i])")
                         
-                        multipartFormData.append(imageArr[i-1], withName: pathName, fileName: imageName, mimeType: "image/png")
+                        multipartFormData.append(imageArr[i], withName: pathName, fileName: imageName, mimeType: "image/png")
                         
 //                        if let data_id_proof = imageArr[i-1] {
 //                            multipartFormData.append(data_id_proof, withName: pathName, fileName: imageName, mimeType: "image/png")

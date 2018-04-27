@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound , .badge]) { (granted, error) in
             print(granted)
         }
+        
         UIApplication.shared.registerForRemoteNotifications()
         
         setupIQKeyboard()
