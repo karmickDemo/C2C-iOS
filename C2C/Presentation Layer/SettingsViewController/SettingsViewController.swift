@@ -28,7 +28,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         self.tblvw_settings.alwaysBounceVertical = false
         self.user_id =  UserDefaults.standard.integer(forKey: "user_id")
-        self.btn_save.layer.cornerRadius=20
+        self.btn_save.layer.cornerRadius = 20
         self.btn_save.clipsToBounds = true
 
         self.getSettingsUrlFire()
@@ -79,9 +79,7 @@ class SettingsViewController: UIViewController {
                         self.btn_notification2.isSelected = false
                         UserDefaults.standard.set((self.settingArr[0]["weekly_email_notify"] as! String), forKey: "weekly")
                         self.strWeeklyNotify = self.settingArr[0]["weekly_email_notify"] as! String
-                    }
-                    
-                    
+                    }                    
                 } else {
                     PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Failed", descriptionText: Main_response["message"] as! String, okBtnTitle: "OK", activityType: .show)
                 }
@@ -91,8 +89,6 @@ class SettingsViewController: UIViewController {
             
         }
     }
-    
-    
     
     @IBAction func btn_NotificationClick(_ sender: Any) {
         if self.btn_notification.isSelected == true{
@@ -107,8 +103,8 @@ class SettingsViewController: UIViewController {
     }
   
     @IBAction func btn_Menu_Click(_ sender: Any) {
+        self.view.endEditing(true)
         LeftMenuViewController.showLeftMenu(onParentViewController: self) { (_, _) in
-            
         }
     }
     
@@ -130,25 +126,20 @@ class SettingsViewController: UIViewController {
                 "weekly_mail": self.strWeeklyNotify,
                 "property_mail": self.strEmailNotify,
                 ]
-            
             ApiCallingClass.BaseApiCalling(withurlString: URLs.updateSettingsURL, withParameters: parameters, withSuccess: { (response) in
-                
                 if response is [String: Any] {
                    // print(response)
-                    
                     let Main_response = response as! [String: Any]
                     let success = Main_response["success"] as! Bool
                     
                     if success == true{
-                        PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Success", descriptionText: Main_response["message"] as! String, okBtnTitle: "OK", activityType: .show)
+                        PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Successful", descriptionText: Main_response["message"] as! String, okBtnTitle: "OK", activityType: .show)
                     } else {
                         PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Failed", descriptionText: Main_response["message"] as! String, okBtnTitle: "OK", activityType: .show)
                     }
                 }
             }) { (error) in
                 print ("error \((String(describing: error!.localizedDescription)))")
-                
             }
-     
     }
 }

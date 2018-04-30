@@ -639,7 +639,6 @@ extension AdvancePropertyDetailsViewController: UITextFieldDelegate {
                     ApiCallingClass.BaseApiCallingGetMethod(withurlString: URLs.propertyTypeURL, withSuccess: { (response) in
                         
                         if response is [String: Any] {
-                            print("From login")
                             print(response);
                             let mainResponse = response as! [String: Any]
                             let success = mainResponse["success"] as! Bool
@@ -747,7 +746,7 @@ extension AdvancePropertyDetailsViewController: UITextFieldDelegate {
             return false
             
         } else if contentArr[textField.tag]["type"] as! String == "currencyDropdown" {
-            
+             self.keyboardDown()
             if currencyArr.count == 0 {
                 ApiCallingClass.BaseApiCallingGetMethod(withurlString: URLs.currencyURL, withSuccess: { (response) in
                     

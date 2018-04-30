@@ -95,6 +95,7 @@ class ChangePasswordViewController: UIViewController {
     }
     
     @IBAction func btn_menu_Click(_ sender: Any) {
+        self.view.endEditing(true)
         LeftMenuViewController.showLeftMenu(onParentViewController: self) { (_, _) in
             
         }
