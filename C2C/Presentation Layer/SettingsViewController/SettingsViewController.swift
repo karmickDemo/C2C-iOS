@@ -55,7 +55,7 @@ class SettingsViewController: UIViewController {
                 
                 if success == true{
                     self.settingArr = Main_response["settings"] as! [[String: Any]]
-                    print("self.settingArr=\(self.settingArr)")
+                   // print("self.settingArr=\(self.settingArr)")
                     
                     if (self.settingArr[0]["new_property_email_notify"] as! String) == "1"{
                         self.btn_notification.setImage(UIImage(named: "check"), for: UIControlState.selected)
@@ -140,7 +140,7 @@ class SettingsViewController: UIViewController {
                     let success = Main_response["success"] as! Bool
                     
                     if success == true{
-                        
+                        PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Success", descriptionText: Main_response["message"] as! String, okBtnTitle: "OK", activityType: .show)
                     } else {
                         PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Failed", descriptionText: Main_response["message"] as! String, okBtnTitle: "OK", activityType: .show)
                     }
