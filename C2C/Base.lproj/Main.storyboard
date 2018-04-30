@@ -4985,7 +4985,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="fOG-z0-FvN"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -4995,7 +4995,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="        Send me Weekly Email Notifications" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g7c-3b-Koq">
                                                             <rect key="frame" x="0.0" y="0.0" width="280" height="32"/>
                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
-                                                            <color key="textColor" red="0.52156862745098043" green="0.52156862745098043" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cd6-pR-LcU">
@@ -5029,7 +5029,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send me Email Notifications whenever a new credit is added" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nH-v5-fVP">
                                                             <rect key="frame" x="29" y="0.0" width="251" height="50"/>
                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
-                                                            <color key="textColor" red="0.52156862745098043" green="0.52156862745098043" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hq5-sk-SgY">
@@ -5058,7 +5058,7 @@
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezV-O2-wJ8">
-                                                    <rect key="frame" x="20" y="171" width="280" height="45"/>
+                                                    <rect key="frame" x="20" y="190" width="280" height="45"/>
                                                     <color key="backgroundColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="45" id="XmW-pM-y8U"/>
@@ -5085,7 +5085,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="8y4-TQ-NWr" secondAttribute="trailing" constant="20" id="Sa6-LI-J6D"/>
                                                 <constraint firstAttribute="trailing" secondItem="UkM-7h-bbY" secondAttribute="trailing" constant="20" id="eiw-ae-cay"/>
                                                 <constraint firstItem="ePr-iM-V1m" firstAttribute="leading" secondItem="J3X-hV-nmh" secondAttribute="leading" constant="20" id="f1r-RY-Y1M"/>
-                                                <constraint firstItem="ezV-O2-wJ8" firstAttribute="top" secondItem="ePr-iM-V1m" secondAttribute="bottom" constant="20" id="zNB-UD-S2t"/>
+                                                <constraint firstItem="ezV-O2-wJ8" firstAttribute="top" secondItem="ePr-iM-V1m" secondAttribute="bottom" constant="39" id="zNB-UD-S2t"/>
                                             </constraints>
                                         </view>
                                     </tableView>
