@@ -75,7 +75,6 @@ class DealListingViewController: UIViewController {
  
     @IBAction func btn_Back_Click(_ sender: Any) {
         self.navigationController?.popViewController(animated: false)
-
     }
     
 }

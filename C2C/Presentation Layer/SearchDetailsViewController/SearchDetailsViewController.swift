@@ -70,6 +70,7 @@ extension SearchDetailsViewController: UITableViewDelegate, UITableViewDataSourc
         
         if self.user_id! != 0 {
             let vc = instantiateViewController(storyboardID: "ProductDetailsViewController") as! ProductDetailsViewController
+            vc.creditId = self.searchPropertyList[indexPath.row]["id"] as? String
             self.navigationController?.pushViewController(vc, animated: true)
         } else {
             PopupTwoOptionsViewController.showPopUpTwoOptions(onParentViewController: self, alertText: "Alert", descriptionText: "Are you not loged in yet. please login to continue.", cancelBtnTitle: "CANCEL", okBtnTitle: "Log In", activityType: .notLogedin, selected: { (_, _) in })

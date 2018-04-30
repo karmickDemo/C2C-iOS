@@ -242,6 +242,14 @@ extension RegistrationSellerViewController: UITableViewDelegate, UITableViewData
                 cellNormal.textField!.placeholder = cellArr["placeholderText"] as? String
                 
                 cellNormal.selectionStyle = UITableViewCellSelectionStyle.none
+                if indexPath.row == 2{
+                    cellNormal.textField.keyboardType = .emailAddress
+                    cellNormal.textField.autocorrectionType = .no
+                    cellNormal.textField.autocapitalizationType = .none
+                    cellNormal.textField.spellCheckingType = .no
+                }else{
+                    cellNormal.textField.keyboardType = .asciiCapable
+                }
                 
                 return cellNormal
             }

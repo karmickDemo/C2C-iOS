@@ -23,6 +23,7 @@ extension SellerPropertiesViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "SellerPropertiesCell", for: indexPath) as! SellerPropertiesCell
         
         if let propName = self.sellerPropertiesArr[indexPath.row]["title"] as? String {
@@ -63,11 +64,14 @@ extension SellerPropertiesViewController: UITableViewDelegate, UITableViewDataSo
         cell.lbl_CreditAmount.text = currency + " " + price
         
         cell.selectionStyle = .none
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 118
+//        return 118
+
+        return UITableViewAutomaticDimension
     }
     
 }
@@ -80,6 +84,9 @@ class SellerPropertiesViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        self.tblvw_SellerProperties.rowHeight = UITableViewAutomaticDimension
+        self.tblvw_SellerProperties.estimatedRowHeight = 44
 
         // Do any additional setup after loading the view.
     }
@@ -87,12 +94,14 @@ class SellerPropertiesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
     
         super.viewWillAppear(animated)
+        
         self.getSellerProperties()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         
         super.viewDidDisappear(animated)
+    
         self.tblvw_SellerProperties.delegate = nil
         self.tblvw_SellerProperties.dataSource = nil
         
@@ -134,8 +143,10 @@ class SellerPropertiesViewController: UIViewController {
     }
     
     @IBAction func addPropertiesBtnAction(_ sender: Any) {
+        let user_id: Int =  UserDefaults.standard.integer(forKey: "user_id")
         let vc = instantiateViewController(storyboardID: "AdvancePropertyDetailsViewController") as! AdvancePropertyDetailsViewController
         vc.pageFrom = "propertyList"
+        vc.sellerId = String(user_id)
         self.navigationController?.pushViewController(vc, animated: false)
     }
     

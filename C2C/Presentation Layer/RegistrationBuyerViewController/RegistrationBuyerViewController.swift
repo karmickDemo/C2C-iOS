@@ -156,17 +156,28 @@ extension RegistrationBuyerViewController: UITableViewDelegate, UITableViewDataS
                 
                 let cellNormal = tableView.dequeueReusableCell(withIdentifier: "textFieldCellNormalForSeller", for: indexPath) as! TextFieldCellNormalForSeller
                 
+              
+                
                 cellNormal.containerView.layer.borderWidth = 1
                 cellNormal.containerView.layer.borderColor = UIColor(red:133/255, green:133/255, blue:133/255, alpha: 1).cgColor
                 cellNormal.containerView.layer.cornerRadius = 20
                 cellNormal.containerView.clipsToBounds = true
                 
                 cellNormal.textField.tag = indexPath.row
+                cellNormal.textField.delegate = self
                 
                 cellNormal.textField!.text = contentArr[indexPath.row]["text"] as? String
                 cellNormal.textField!.placeholder = contentArr[indexPath.row]["placeholderText"] as? String
                 
                 cellNormal.selectionStyle = UITableViewCellSelectionStyle.none
+                if indexPath.row == 2{
+                    cellNormal.textField.keyboardType = .emailAddress
+                    cellNormal.textField.autocorrectionType = .no
+                    cellNormal.textField.autocapitalizationType = .none
+                    cellNormal.textField.spellCheckingType = .no
+                }else{
+                    cellNormal.textField.keyboardType = .asciiCapable
+                }
                 
                 return cellNormal
             }

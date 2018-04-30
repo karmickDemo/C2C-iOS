@@ -126,7 +126,9 @@ class AdministrativeMessagesViewController: UIViewController,UITextViewDelegate
     var chat_text_string = String()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         IQKeyboardManager.sharedManager().enable = false
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = false
@@ -136,16 +138,13 @@ class AdministrativeMessagesViewController: UIViewController,UITextViewDelegate
         self.tblvw_Chat.dataSource=self;
         self.vw_bckgrd_txtfld.layer.cornerRadius = 4
         self.vw_bckgrd_txtfld.clipsToBounds = true
-        //self.txtvw_MessageType.sizeToFit()
         
-        // self.txtvw_MessageType.resignFirstResponder()
         chat_text_string = self.txtvw_MessageType.text;
         self.txtvw_MessageType.text = ""
         self.lbl_Placeholder_txtvw.isHidden = !self.txtvw_MessageType.text.isEmpty
+        
         self.btn_send.alpha = 0.45
         self.btn_send.isUserInteractionEnabled = false
-        
-        
         
         let dic1 = ["labeltext": "Hello"]
         

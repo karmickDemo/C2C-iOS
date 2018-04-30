@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "C2C/Presentation Layer/AdvancePropertyDetailsViewController/AdvancePropertyDetailsViewController.swift"
-            timestampString = "546531798.069932"
+            timestampString = "546786117.261657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "638"
-            endingLineNumber = "638"
+            startingLineNumber = "634"
+            endingLineNumber = "634"
             landmarkName = "textFieldShouldBeginEditing(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "C2C/Presentation Layer/AdvancePropertyDetailsViewController/AdvancePropertyDetailsViewController.swift"
-            timestampString = "546531798.070338"
+            timestampString = "546786117.26177"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "727"
-            endingLineNumber = "727"
+            startingLineNumber = "723"
+            endingLineNumber = "723"
             landmarkName = "textFieldShouldBeginEditing(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -73,22 +73,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "C2C/Presentation Layer/LoginViewController/LoginViewController.swift"
-            timestampString = "546428779.23722"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "staySignInAction(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "C2C/Presentation Layer/ImagePickerViewController/ImagePickerViewController.swift"
             timestampString = "546531798.070648"
             startingColumnNumber = "9223372036854775807"
@@ -112,6 +96,22 @@
             startingLineNumber = "227"
             endingLineNumber = "227"
             landmarkName = "requestWithMultipleImages(withurlString:forImageOne:forImages:parameters:withSuccess:andFailure:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "C2C/Presentation Layer/AdvancePropertyDetailsViewController/AdvancePropertyDetailsViewController.swift"
+            timestampString = "546786117.261914"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "submitProperty()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

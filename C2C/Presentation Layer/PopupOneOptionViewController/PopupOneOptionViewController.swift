@@ -133,7 +133,7 @@ class PopupOneOptionViewController: UIViewController {
     }
     
     private func popBack()  {
-        self.navigationController?.popViewController(animated: true)
+        viewController!.navigationController?.popViewController(animated: true)
     }
     
     func pushToLogin() -> Void {

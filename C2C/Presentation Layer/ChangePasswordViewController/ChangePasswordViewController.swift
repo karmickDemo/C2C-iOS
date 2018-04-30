@@ -95,6 +95,7 @@ class ChangePasswordViewController: UIViewController {
     }
     
     @IBAction func btn_menu_Click(_ sender: Any) {
+        self.view.endEditing(true)
         LeftMenuViewController.showLeftMenu(onParentViewController: self) { (_, _) in
             
         }
@@ -118,6 +119,8 @@ class ChangePasswordViewController: UIViewController {
                 
                 if success == true{
                     print("response chngpsw--\(Main_response)")
+                    
+                    PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Successful", descriptionText: "Password changed successfully", okBtnTitle: "OK", activityType: .show)
                     
                 } else {
                     PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Failed", descriptionText: Main_response["message"] as! String, okBtnTitle: "OK", activityType: .show)

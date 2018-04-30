@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 fileprivate let itemsPerRow: CGFloat = 2
 
@@ -18,6 +19,7 @@ class PropertyHighlightsCell: UITableViewCell {
     @IBOutlet var view2: UIView!
     @IBOutlet var contentLblOne: UILabel!
     @IBOutlet var contentLblTwo: UILabel!
+    
 }
 
 class PropertyImageCell: UITableViewCell {
@@ -34,13 +36,6 @@ class HiglightInfoCollectionViewCell : UICollectionViewCell {
     
     @IBOutlet var headingLbl: UILabel!
     @IBOutlet var contentLbl: UILabel!
-    
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        self.contentView.frame = self.bounds
-//        self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-//    }
-    
 }
 
 class ListingTableViewCell : UITableViewCell {
@@ -74,7 +69,6 @@ extension ProductDetailsViewController: UICollectionViewDelegateFlowLayout, UICo
             return CGSize(width: widthPerItem, height: contentHeight)
             
         } else {
-            
             let size: CGSize = CGSize(width: 0, height: 0)
             return size
         }
@@ -84,8 +78,8 @@ extension ProductDetailsViewController: UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if collectionView.tag == 1 // for property image collection view
-        {
+        if collectionView.tag == 1 { // for property image collection view
+            
             return 4
             
         } else if collectionView.tag == 2 {  // for highlights collection view
@@ -165,14 +159,6 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
                 heightOne = self.stringHeight(str: contentArr[indexOne]["text"] as! String, font: UIFont(name: "OpenSans", size: 12)!, size: CGSize(width: (screenWidth - 60)/2, height: CGFloat(MAXFLOAT)))
             }
             
-            
-            
-            
-            
-//            cell.contentLblOne.text = contentArr[indexOne]["text"] as? String
-//            cell.contentLblTwo.text = contentArr[indexTwo]["text"] as? String
-            
-            
             return max(heightOne, heightTwo) + 20 + 20
             
         } else {
@@ -249,7 +235,7 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
         
         if section == 0 {
             
-            let strHeight: CGFloat = self.stringHeight(str: str, font: UIFont(name:"OpenSans-Bold", size: 15)!, size: CGSize(width: screenWidth - 40, height: CGFloat(MAXFLOAT)))
+            let strHeight: CGFloat = self.stringHeight(str: titleStr, font: UIFont(name:"OpenSans-Bold", size: 15)!, size: CGSize(width: screenWidth - 40, height: CGFloat(MAXFLOAT)))
             
             let headerView = UIView()
             headerView.frame = CGRect(x: 0, y:0, width: screenWidth, height: strHeight + 70)
@@ -257,20 +243,71 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
             
             let headingLbl = UILabel()
             headingLbl.frame = CGRect(x: 20, y: 20, width: screenWidth - 40, height: strHeight)
-            headingLbl.text = str
+            headingLbl.text = titleStr
             headingLbl.textColor = fontColorDark
             headingLbl.numberOfLines = 0
             headingLbl.lineBreakMode = .byWordWrapping
             headingLbl.font = UIFont(name:"OpenSans-Bold", size: 15)!
             
+            
+            var creditType = String()
+            var LoanType = String()
+            
+            if let property = self.creditInfo["property_type_name"] as? String {
+                creditType = property
+            }
+            
+            if let loan = self.creditInfo["financial_loan_type_name"] as? String {
+                LoanType = loan
+            }
+            
             let subHeadingLbl = UILabel()
             subHeadingLbl.frame = CGRect(x: 20, y: 30 + strHeight, width: screenWidth - 40, height: 20)
-            subHeadingLbl.text = "Industrial and manufacturing"
             subHeadingLbl.textColor = placeHolderColor
             subHeadingLbl.font = UIFont(name:"OpenSans", size: 14)!
+            subHeadingLbl.text = creditType + " | " + LoanType
+            
+            let locImg = UIImageView()
+            locImg.frame = CGRect(x: 20, y: 60 + strHeight, width: 20, height: 20)
+            locImg.image = UIImage(named: "location_detail")
+            locImg.contentMode = .scaleAspectFit
+            
+            var region = String()
+            var country = String()
+            
+            if let reg = self.creditInfo["region_name"] as? String {
+                region = reg
+            }
+            
+            if let countryProp = self.creditInfo["country_name"] as? String {
+                country = countryProp
+            }
+            
+            let locationLbl = UILabel()
+            locationLbl.frame = CGRect(x: 50, y: 60 + strHeight, width: screenWidth - 70, height: 20)
+            locationLbl.text = region + " " + country
+            locationLbl.textColor = placeHolderColor
+            locationLbl.font = UIFont(name:"OpenSans", size: 14)!
+            
+            let priceImg = UIImageView()
+            priceImg.frame = CGRect(x: 20, y: 90 + strHeight, width: 20, height: 20)
+            priceImg.image = UIImage(named: "doller")
+            priceImg.contentMode = .scaleAspectFit
+            
+            let priceLbl = UILabel()
+            priceLbl.frame = CGRect(x: 50, y: 90 + strHeight, width: screenWidth - 70, height: 20)
+            if let price = self.creditInfo["original_amount"] as? String {
+                priceLbl.text = price
+            }
+            priceLbl.textColor = placeHolderColor
+            priceLbl.font = UIFont(name:"OpenSans", size: 14)!
             
             headerView.addSubview(headingLbl)
             headerView.addSubview(subHeadingLbl)
+            headerView.addSubview(locImg)
+            headerView.addSubview(locationLbl)
+            headerView.addSubview(priceImg)
+            headerView.addSubview(priceLbl)
             
             return headerView
             
@@ -347,7 +384,7 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             
-            return self.stringHeight(str: str, font: UIFont(name:"OpenSans-Bold", size: 15)!, size: CGSize(width: screenWidth - 40, height: CGFloat(MAXFLOAT))) + 70
+            return self.stringHeight(str: titleStr, font: UIFont(name:"OpenSans-Bold", size: 15)!, size: CGSize(width: screenWidth - 40, height: CGFloat(MAXFLOAT))) + 130
             
         } else if section == 1 {
             
@@ -387,12 +424,17 @@ class ProductDetailsViewController: UIViewController {
     
     let height: CGFloat = 0.0
 
-    let str: String = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
+    var titleStr: String! = ""
     
     @IBOutlet var productDetailTableView: UITableView!
     var contentArr = [[String: Any]]()
     
     @IBOutlet var mapImageView: UIImageView!
+    
+    var creditId: String!
+    
+    var creditDetails = [String: Any]()
+    var creditInfo = [String: Any]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -434,8 +476,53 @@ class ProductDetailsViewController: UIViewController {
         self.mapImageView.layer.borderWidth = 5
         self.mapImageView.layer.borderColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha:1).cgColor
         self.mapImageView.clipsToBounds = true
+
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.productDetailTableView.contentInsetAdjustmentBehavior = .never
+        
+        self.getCreditDetails()
+    }
+    
+    private func getCreditDetails() {
+        
+        let user_id: Int =  UserDefaults.standard.integer(forKey: "user_id")
+        
+        let parameter: Parameters = [
+            "credit_id": self.creditId,
+            "user_id": String(user_id)
+        ]
+        
+        ApiCallingClass.BaseApiCalling(withurlString: URLs.creditDetailURL, withParameters: parameter, withSuccess: { (response) in
+            let Main_response = response as! [String: Any]
+            let success = Main_response["success"] as! Bool
+            
+            if success == true {
+                
+                self.creditDetails = Main_response["creditList"] as! [String: Any]
+                
+                let creditInfoArr = self.creditDetails["credit"] as! [[String: Any]]
+                self.creditInfo = creditInfoArr[0]
+                
+                self.titleStr = self.creditInfo["title"] as! String
+                
+                self.productDetailTableView.isHidden = false
+                
+                self.productDetailTableView.reloadData()
+            } else {
+                PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Failed", descriptionText: Main_response["message"] as! String, okBtnTitle: "OK", activityType: .show)
+            }
+        }) { (error) in
+            if (error)?.errorCode == -200 {
+                PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Not connected", descriptionText: "Device is not connected to internet.", okBtnTitle: "OK", activityType: .show)
+            } else {
+                PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Failed", descriptionText: error!.localizedDescription, okBtnTitle: "OK", activityType: .show)
+            }
+        }
+    }
 
     @IBAction func backBtnAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

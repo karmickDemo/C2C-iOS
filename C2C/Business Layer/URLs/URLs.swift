@@ -31,5 +31,6 @@ class URLs {
     static let updatePreferenceURL = mainURL + "update_preference"
     static let getSettingsURL = mainURL + "get_settings"
     static let updateSettingsURL = mainURL + "update_settings"
+    static let creditDetailURL = mainURL + "credit_details"
     
 }

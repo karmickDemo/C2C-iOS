@@ -67,6 +67,8 @@ class AdvancePropertyDetailsViewController: UIViewController {
     var pageFrom: String!
     
     @IBOutlet var LegalDocumentsImageSelection: UIImageView!
+    @IBOutlet var creditImageSelecton: UIImageView!
+    
     @IBOutlet var backBtn: UIButton!
     
     override func viewDidLoad() {
@@ -117,7 +119,7 @@ class AdvancePropertyDetailsViewController: UIViewController {
             "text": "",
             ]
         let dic8 = [
-            "placeholderText": "Price",
+            "placeholderText": "Price *",
             "type": "textbox",
             "text": "",
             "selectedIndex": "0",
@@ -128,7 +130,7 @@ class AdvancePropertyDetailsViewController: UIViewController {
         if self.pageFrom == "propertyList" {
             self.backBtn.isHidden = false
         } else if self.pageFrom == "registrationSeller" {
-            self.backBtn.isHidden = true
+            self.backBtn.isHidden = false
         }
         
         self.registerBtn.layer.cornerRadius = 22.5
@@ -160,7 +162,7 @@ class AdvancePropertyDetailsViewController: UIViewController {
     }
     */
     
-    private func submitProperty () {
+    private func submitProperty() {
         
         var propertyTypeStr = String()
         var regionIdStr = String()
@@ -223,12 +225,10 @@ class AdvancePropertyDetailsViewController: UIViewController {
                 if success == true {
                     
                     if self.pageFrom == "registrationSeller" {
-                        PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Failed", descriptionText: mainResponse["message"] as! String, okBtnTitle: "OK", activityType: .registrationSuccess)
+                        PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Successful", descriptionText: mainResponse["message"] as! String, okBtnTitle: "OK", activityType: .registrationSuccess)
                     } else if self.pageFrom == "propertyList" {
-                        PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Failed", descriptionText: mainResponse["message"] as! String, okBtnTitle: "OK", activityType: .propertyAdded)
+                        PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Successful", descriptionText: mainResponse["message"] as! String, okBtnTitle: "OK", activityType: .propertyAdded)
                     }
-                    
-                    
                     
                 } else {
                     PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Failed", descriptionText: mainResponse["message"] as! String, okBtnTitle: "OK", activityType: .show)
@@ -258,10 +258,10 @@ class AdvancePropertyDetailsViewController: UIViewController {
             TTGSnackbarConfiguration.snackbarConfiguration(message: "Please select a Region.", duration: TTGSnackbarDuration.middle)
         } else if ((contentArr[3]["text"] as! String).isBlank) {
             TTGSnackbarConfiguration.snackbarConfiguration(message: "Please select a Country.", duration: TTGSnackbarDuration.middle)
+        } else if ((contentArr[contentArr.count - 1]["text"] as! String).isBlank) {
+            TTGSnackbarConfiguration.snackbarConfiguration(message: "Please enter a price for this property.", duration: TTGSnackbarDuration.middle)
         } else {
-            
             self.keyboardDown()
-            
             self.submitProperty()
         }
     }
@@ -292,7 +292,6 @@ class AdvancePropertyDetailsViewController: UIViewController {
     }
     
     func keyboardDown() -> Void {
-        
         self.view.layoutIfNeeded()
         self.view.endEditing(true)
         self.view.layoutIfNeeded()
@@ -405,27 +404,33 @@ class AdvancePropertyDetailsViewController: UIViewController {
             
             self.getAllImages()
             
-        }, completion: nil)
+        }, completion: {
+            
+        })
         
+//        if self.arrSelectedImages.count > 0 {
+//            self.creditImageSelecton.image = UIImage (named: "ok")
+//        }
     }
     
     @objc func getAllImages() -> Void {
         
         print("SelectedAssets.count==\(SelectedAssets.count)")
+        
         if is1stCredit {
             for i in (0..<phassetCount).reversed(){
                 self.SelectedAssets.remove(at: i)
             }
             self.is1stCredit = false
         }
-        else{
-//            [27268 bytes, 65219 bytes, 66365 bytes, 69143 bytes]
+        else {
         }
         
         print("get all images method called here")
         var arrImages = [Any]()
         arrSelectedImages = [Any]()
-        if SelectedAssets.count != 0{
+        
+        if SelectedAssets.count != 0 {
             for i in 0..<SelectedAssets.count{
                 let manager = PHImageManager.default()
                 let option = PHImageRequestOptions()
@@ -440,10 +445,6 @@ class AdvancePropertyDetailsViewController: UIViewController {
                 print("arrImages==\(arrImages)")
                 var imagedata = Data()
                 
-                //                imagedata = UIImageJPEGRepresentation((thumbnail), 1)!
-                //                arrSelectedImages.insert(imagedata, at: i)
-                //                print("imagedata==\(imagedata)")
-                
                 print(arrSelectedImages.count)
                 
                 for dataConvet in arrImages {
@@ -453,12 +454,11 @@ class AdvancePropertyDetailsViewController: UIViewController {
                 arrSelectedImages.insert(imagedata, at: i)
                 print("arrSelectedImages==\(arrSelectedImages)")
                 print("arrSelectedImages.count==\(arrSelectedImages.count)")
-                
-                
-                
             }
         }
-        
+        DispatchQueue.main.async {
+            self.creditImageSelecton.image = UIImage (named: "ok")
+        }
     }
 }
 
@@ -473,11 +473,8 @@ extension AdvancePropertyDetailsViewController: UITextViewDelegate {
         } else {
             cell.placeholderLbl.isHidden = true
         }
-        
         self.doneEditing(tag: textView.tag, str: textView.text, indexDropDown: 0)
     }
-    
-    
 }
 
 extension AdvancePropertyDetailsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -487,7 +484,6 @@ extension AdvancePropertyDetailsViewController: UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if contentArr[indexPath.row]["type"] as? String == "textbox" {
             
             let cellNormal = tableView.dequeueReusableCell(withIdentifier: "textFieldCellNormalForSeller", for: indexPath) as! TextFieldCellNormalForSeller
@@ -639,7 +635,6 @@ extension AdvancePropertyDetailsViewController: UITextFieldDelegate {
                     ApiCallingClass.BaseApiCallingGetMethod(withurlString: URLs.propertyTypeURL, withSuccess: { (response) in
                         
                         if response is [String: Any] {
-                            print("From login")
                             print(response);
                             let mainResponse = response as! [String: Any]
                             let success = mainResponse["success"] as! Bool
@@ -747,7 +742,7 @@ extension AdvancePropertyDetailsViewController: UITextFieldDelegate {
             return false
             
         } else if contentArr[textField.tag]["type"] as! String == "currencyDropdown" {
-            
+             self.keyboardDown()
             if currencyArr.count == 0 {
                 ApiCallingClass.BaseApiCallingGetMethod(withurlString: URLs.currencyURL, withSuccess: { (response) in
                     

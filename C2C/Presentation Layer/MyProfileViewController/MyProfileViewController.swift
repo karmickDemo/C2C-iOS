@@ -94,6 +94,7 @@ class MyProfileViewController: UIViewController {
     }
     
     @IBAction func btnMenuAction(_ sender: Any) {
+        self.view.endEditing(true)
         LeftMenuViewController.showLeftMenu(onParentViewController: self) { (_, _) in
             
         }
