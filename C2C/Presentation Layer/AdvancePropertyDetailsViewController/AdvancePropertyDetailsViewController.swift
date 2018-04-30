@@ -128,7 +128,7 @@ class AdvancePropertyDetailsViewController: UIViewController {
         if self.pageFrom == "propertyList" {
             self.backBtn.isHidden = false
         } else if self.pageFrom == "registrationSeller" {
-            self.backBtn.isHidden = true
+            self.backBtn.isHidden = false
         }
         
         self.registerBtn.layer.cornerRadius = 22.5

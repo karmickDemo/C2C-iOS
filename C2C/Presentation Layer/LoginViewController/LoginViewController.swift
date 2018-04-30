@@ -297,6 +297,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(searchVC, animated: true)
     }
     
+    @IBAction func btn_ForgotPassword_Click(_ sender: Any) {
+        let forgotVC = instantiateViewController(storyboardID: "ForgotPasswordViewController") as! ForgotPasswordViewController
+        self.navigationController?.pushViewController(forgotVC, animated: false)
+    }
+    
     /*
      // MARK: - Navigation
      

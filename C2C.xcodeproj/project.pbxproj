@@ -44,6 +44,7 @@
 		4E0076DE20779292002250A1 /* DashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0076DD20779292002250A1 /* DashBoardViewController.swift */; };
 		4E14777320885E63001CBB9E /* imagePickerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E14777220885E61001CBB9E /* imagePickerHelper.swift */; };
 		4E1477762088692F001CBB9E /* PopupListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1477752088692F001CBB9E /* PopupListingViewController.swift */; };
+		4E1639C12096EEC00004DBB1 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1639C02096EEC00004DBB1 /* ForgotPasswordViewController.swift */; };
 		4E19348F2085C18500E4EE84 /* AdministrativeMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E19348A2085C18300E4EE84 /* AdministrativeMessagesViewController.swift */; };
 		4E1934902085C18500E4EE84 /* CommunicationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E19348C2085C18400E4EE84 /* CommunicationsViewController.swift */; };
 		4E1934912085C18500E4EE84 /* Terms&ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E19348E2085C18400E4EE84 /* Terms&ConditionsViewController.swift */; };
@@ -140,6 +141,7 @@
 		4E0076DD20779292002250A1 /* DashBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewController.swift; sourceTree = "<group>"; };
 		4E14777220885E61001CBB9E /* imagePickerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imagePickerHelper.swift; sourceTree = "<group>"; };
 		4E1477752088692F001CBB9E /* PopupListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupListingViewController.swift; sourceTree = "<group>"; };
+		4E1639C02096EEC00004DBB1 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		4E19348A2085C18300E4EE84 /* AdministrativeMessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdministrativeMessagesViewController.swift; sourceTree = "<group>"; };
 		4E19348C2085C18400E4EE84 /* CommunicationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationsViewController.swift; sourceTree = "<group>"; };
 		4E19348E2085C18400E4EE84 /* Terms&ConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Terms&ConditionsViewController.swift"; sourceTree = "<group>"; };
@@ -338,6 +340,14 @@
 			path = PopupListingViewController;
 			sourceTree = "<group>";
 		};
+		4E1639BF2096EEAE0004DBB1 /* ForgotPasswordViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4E1639C02096EEC00004DBB1 /* ForgotPasswordViewController.swift */,
+			);
+			path = ForgotPasswordViewController;
+			sourceTree = "<group>";
+		};
 		4E1934892085C18300E4EE84 /* AdministrativeMessagesViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,6 +543,7 @@
 		CD17A26A2074D918000D6FA0 /* Presentation Layer */ = {
 			isa = PBXGroup;
 			children = (
+				4E1639BF2096EEAE0004DBB1 /* ForgotPasswordViewController */,
 				4E266C2B2093464400322A1A /* DealListingViewController */,
 				4E266C2F2093464600322A1A /* MyOffersViewController */,
 				4E266C2D2093464500322A1A /* SettingsViewController */,
@@ -1021,6 +1032,7 @@
 				4E0076DB20778AFB002250A1 /* OpenSans-Semibold.ttf in Sources */,
 				4E0076CA20773C46002250A1 /* LoginViewController.swift in Sources */,
 				4E0076C220773C3A002250A1 /* Utility.swift in Sources */,
+				4E1639C12096EEC00004DBB1 /* ForgotPasswordViewController.swift in Sources */,
 				4E1934902085C18500E4EE84 /* CommunicationsViewController.swift in Sources */,
 				4E266C362093464700322A1A /* WishListViewController.swift in Sources */,
 				4E0076C920773C46002250A1 /* RegistrationSellerViewController.swift in Sources */,
