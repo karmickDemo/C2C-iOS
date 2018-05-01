@@ -63,7 +63,7 @@ extension SearchDetailsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 118
+        return UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -93,16 +93,19 @@ class SearchDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        self.serachDetailTableView.dataSource = self
+        self.serachDetailTableView.delegate = self
+        
+        self.serachDetailTableView.rowHeight = UITableViewAutomaticDimension
+        self.serachDetailTableView.estimatedRowHeight = 118
         
         UIApplication.shared.statusBarView?.backgroundColor = headerColor
-        
         self.drawTags(contains: contentArr)
-        
         self.user_id =  UserDefaults.standard.integer(forKey: "user_id")
-        
         self.serachProperties()
+        
+        self.serachDetailTableView.reloadData()
     }
     
     private func serachProperties () {
