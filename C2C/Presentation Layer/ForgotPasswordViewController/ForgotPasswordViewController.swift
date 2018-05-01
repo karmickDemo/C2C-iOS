@@ -17,6 +17,9 @@ class ForgotPasswordViewController: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        print("hello world")
         UIApplication.shared.statusBarView?.backgroundColor = headerColor
         self.btn_forgotPwd.layer.borderWidth = 1
         self.btn_forgotPwd.layer.borderColor = UIColor(red:133/255, green:133/255, blue:133/255, alpha: 1).cgColor
