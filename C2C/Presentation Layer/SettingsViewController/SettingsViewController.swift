@@ -134,19 +134,8 @@ class SettingsViewController: UIViewController {
                     let success = Main_response["success"] as! Bool
                     
                     if success == true{
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                         PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "successful", descriptionText: "Setting updated.", okBtnTitle: "OK", activityType: .show)
-=======
-                        PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Successful", descriptionText: Main_response["message"] as! String, okBtnTitle: "OK", activityType: .show)
->>>>>>> origin/master
-=======
-                        PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Successful", descriptionText: Main_response["message"] as! String, okBtnTitle: "OK", activityType: .show)
->>>>>>> origin/master
-=======
-                        PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Successful", descriptionText: Main_response["message"] as! String, okBtnTitle: "OK", activityType: .show)
->>>>>>> origin/master
+
                     } else {
                         PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Failed", descriptionText: Main_response["message"] as! String, okBtnTitle: "OK", activityType: .show)
                     }
