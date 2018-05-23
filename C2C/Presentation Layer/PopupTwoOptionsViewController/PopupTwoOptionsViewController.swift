@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Alamofire
 
 enum PopupTypeOptions {
     case logout
     case notLogedin
+    case removeWishlist
 }
 
 class PopupTwoOptionsViewController: UIViewController {
@@ -26,6 +28,10 @@ class PopupTwoOptionsViewController: UIViewController {
     var viewController: UIViewController?
     
     var popupTypeOptions: PopupTypeOptions!
+    var cellTag: Int?
+    
+    
+    var didSelectOption: ((_ value: String?, _ index: Int?) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,14 +62,15 @@ class PopupTwoOptionsViewController: UIViewController {
         self.cancelPopup()
     }
     
-    static func showPopUpTwoOptions(onParentViewController parentViewController: UIViewController, alertText: String, descriptionText: String, cancelBtnTitle: String, okBtnTitle: String, activityType: PopupTypeOptions, selected: @escaping (_ value: AnyObject?, _ index: Int?) -> Void) {
+    static func showPopUpTwoOptions(onParentViewController parentViewController: UIViewController, alertText: String, descriptionText: String, cancelBtnTitle: String, okBtnTitle: String, activityType: PopupTypeOptions, requiredTag: Int, selected: @escaping (_ value: String?, _ index: Int?) -> Void) {
         
         let classObj = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopupTwoOptionsViewController") as! PopupTwoOptionsViewController
-        classObj.popupConfig(onParentViewController: parentViewController, alertText: alertText, descriptionText: descriptionText, cancelBtnTitle: cancelBtnTitle, okBtnTitle: okBtnTitle)
+        classObj.popupConfig(onParentViewController: parentViewController, alertText: alertText, descriptionText: descriptionText, cancelBtnTitle: cancelBtnTitle, okBtnTitle: okBtnTitle, tag: requiredTag)
+        classObj.didSelectOption = selected
         classObj.popupTypeOptions = activityType
     }
     
-    func popupConfig(onParentViewController parentViewController: UIViewController, alertText: String, descriptionText: String, cancelBtnTitle: String, okBtnTitle: String) -> Void {
+    func popupConfig(onParentViewController parentViewController: UIViewController, alertText: String, descriptionText: String, cancelBtnTitle: String, okBtnTitle: String, tag: Int) -> Void {
         
         
         self.view.frame = UIScreen.main.bounds
@@ -86,6 +93,8 @@ class PopupTwoOptionsViewController: UIViewController {
         
         self.cancelBtn.setTitle(cancelBtnTitle, for: .normal)
         self.okBtn.setTitle(okBtnTitle, for: .normal)
+        
+        self.cellTag = tag
     }
     
     @IBAction func cancelBtnAction(_ sender: Any) {
@@ -103,6 +112,49 @@ class PopupTwoOptionsViewController: UIViewController {
         }
     }
     
+    private func logout() {
+        
+        let user_id: Int =  UserDefaults.standard.integer(forKey: "user_id")
+        
+        let parameter: Parameters = [
+            "user_id": String(user_id),
+            "type": "iOS"
+        ]
+        
+        ApiCallingClass.BaseApiCalling(withurlString: URLs.logoutURL, withParameters: parameter, withSuccess: { (response) in
+            
+            if response is [String: Any] {
+                
+                let Main_response = response as! [String: Any]
+                let success = Main_response["success"] as! Bool
+                
+                if success == true {
+                    
+                    UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+    
+                    self.view.removeFromSuperview()
+                    self.removeFromParentViewController()
+                        
+                    self.pushToLogin()
+                    
+                } else {
+                    
+                    self.view.removeFromSuperview()
+                    self.removeFromParentViewController()
+                    
+                    PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Failed", descriptionText: Main_response["message"] as! String, okBtnTitle: "OK", activityType: .show, selected: { (_, _) in })
+                }
+            }
+            
+        }) { (error) in
+            
+            self.view.removeFromSuperview()
+            self.removeFromParentViewController()
+            
+            PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Failed", descriptionText: error!.localizedDescription, okBtnTitle: "OK", activityType: .show, selected: { (_, _) in })
+        }
+    }
+    
     @IBAction func okBtnAction(_ sender: Any) {
         
         switch popupTypeOptions {
@@ -113,13 +165,9 @@ class PopupTwoOptionsViewController: UIViewController {
                 self.containerView.transform = CGAffineTransform(translationX: 0, y: screenHeight)
                 self.alphaView.alpha = 0
             }) { (_) in
-                self.view.removeFromSuperview()
-                self.removeFromParentViewController()
-                
-                UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-                
-                self.pushToLogin()
+                self.logout()
             }
+            
             break
         case .notLogedin:
             
@@ -133,6 +181,17 @@ class PopupTwoOptionsViewController: UIViewController {
                 UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
                 
                 self.pushToLogin()
+            }
+            break
+        case .removeWishlist:
+            UIView.animate(withDuration: 0.3, animations: {
+                self.containerView.transform = CGAffineTransform(translationX: 0, y: screenHeight)
+                self.alphaView.alpha = 0
+            }) { (_) in
+                self.view.removeFromSuperview()
+                self.removeFromParentViewController()
+                
+                self.didSelectOption!("remove", self.cellTag)
             }
             break
         default: break

@@ -4,18 +4,76 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "C2C/Presentation Layer/AdvancePropertyDetailsViewController/AdvancePropertyDetailsViewController.swift"
-            timestampString = "546786117.261657"
+            filePath = "C2C/Presentation Layer/SetPreferencesViewController/SetPreferencesViewController.swift"
+            timestampString = "548747484.0464"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "634"
-            endingLineNumber = "634"
-            landmarkName = "textFieldShouldBeginEditing(_:)"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "callPopup(tag:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "C2C.SetPreferencesViewController.callPopup(tag: Swift.Int) -&gt; ()"
+                  moduleName = "C2C"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/somenath/Downloads/C2C%208:05:18/C2C/Presentation%20Layer/SetPreferencesViewController/SetPreferencesViewController.swift"
+                  timestampString = "548758643.837254"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "220"
+                  endingLineNumber = "220"
+                  offsetFromSymbolStart = "1727">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Optional&lt;Swift.Array&lt;Foundation.IndexPath&gt;&gt;, Swift.Optional&lt;Swift.Int&gt;) -&gt; () in C2C.SetPreferencesViewController.callPopup(tag: Swift.Int) -&gt; ()"
+                  moduleName = "C2C"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/somenath/Downloads/C2C%208:05:18/C2C/Presentation%20Layer/SetPreferencesViewController/SetPreferencesViewController.swift"
+                  timestampString = "548758643.839274"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "221"
+                  endingLineNumber = "221"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "C2C/Presentation Layer/PopupListingViewController/PopupListingViewController.swift"
+            timestampString = "548679346.7030309"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
+            landmarkName = "popupListingConfig(onParentViewController:heading:selectedIndexForList:selectedIndexArr:contents:type:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,93 +83,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "C2C/Presentation Layer/AdvancePropertyDetailsViewController/AdvancePropertyDetailsViewController.swift"
-            timestampString = "546786117.26177"
+            filePath = "C2C/Presentation Layer/PopupListingViewController/PopupListingViewController.swift"
+            timestampString = "548679346.703683"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "723"
-            endingLineNumber = "723"
-            landmarkName = "textFieldShouldBeginEditing(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/TTGSnackbar/TTGSnackbar/TTGSnackbar.swift"
-            timestampString = "546345478.916636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "topMargin"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/TTGSnackbar/TTGSnackbar/TTGSnackbar.swift"
-            timestampString = "546345478.916703"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "559"
-            endingLineNumber = "559"
-            landmarkName = "show()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "C2C/Presentation Layer/ImagePickerViewController/ImagePickerViewController.swift"
-            timestampString = "546531798.070648"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "handleTap(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "C2C/Data Access Layer/ApiCallingWithAlamofire/ApiCallingClass.swift"
-            timestampString = "546531798.0707051"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
-            landmarkName = "requestWithMultipleImages(withurlString:forImageOne:forImages:parameters:withSuccess:andFailure:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "C2C/Presentation Layer/AdvancePropertyDetailsViewController/AdvancePropertyDetailsViewController.swift"
-            timestampString = "546786117.261914"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
-            landmarkName = "submitProperty()"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "popupListingConfig(onParentViewController:heading:selectedIndexForList:selectedIndexArr:contents:type:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

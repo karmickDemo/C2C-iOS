@@ -14,6 +14,8 @@ enum PopupType {
     case creditType
     case loanType
     case currency
+    case sellerProperty
+    case multipleOptions
 }
 
 class ListCell: UITableViewCell {
@@ -32,7 +34,7 @@ extension PopupListingViewController: UITableViewDelegate, UITableViewDataSource
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath) as! ListCell
         
-        switch popupType {
+        switch self.popupType {
         case .region:
                 cell.nameLbl.text = contentArr[indexPath.row]["name"] as? String
             break
@@ -48,17 +50,40 @@ extension PopupListingViewController: UITableViewDelegate, UITableViewDataSource
         case .currency:
             cell.nameLbl.text = contentArr[indexPath.row]["currency_name"] as? String
             break
+        case .sellerProperty:
+            cell.nameLbl.text = contentArr[indexPath.row]["title"] as? String
+            break
+         case .multipleOptions:
+            cell.nameLbl.text = contentArr[indexPath.row]["name"] as? String
+            break
         default: break
             
         }
         
-        if contentArr[indexPath.row]["isSelected"] as! String == "selected" {
-            cell.imageVw.image = UIImage (named: "tickList")
-            cell.nameLbl.textColor = fontColorDark
-        } else if contentArr[indexPath.row]["isSelected"] as! String == "notSelected" {
-            cell.imageVw.image = UIImage (named: "tickListWhite")
-            cell.nameLbl.textColor = placeHolderColor
+        switch self.popupType {
+            
+        case .multipleOptions:
+            
+            if self.selectedIndexArr.contains(indexPath) {
+                cell.imageVw.image = UIImage (named: "tickList")
+                cell.nameLbl.textColor = fontColorDark
+            } else {
+                cell.imageVw.image = UIImage (named: "tickListWhite")
+                cell.nameLbl.textColor = placeHolderColor
+            }
+            break
+        default:
+            if contentArr[indexPath.row]["isSelected"] as! String == "selected" {
+                cell.imageVw.image = UIImage (named: "tickList")
+                cell.nameLbl.textColor = fontColorDark
+            } else if contentArr[indexPath.row]["isSelected"] as! String == "notSelected" {
+                cell.imageVw.image = UIImage (named: "tickListWhite")
+                cell.nameLbl.textColor = placeHolderColor
+            }
+            break
         }
+        
+        
         
         cell.selectionStyle = .none
         return cell
@@ -66,23 +91,36 @@ extension PopupListingViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if contentArr[indexPath.row]["isSelected"] as! String == "selected" {
-            var chunk = [String: Any]()
-            chunk = contentArr[indexPath.row]
-            contentArr.remove(at: indexPath.row)
+        switch self.popupType {
             
-            chunk["isSelected"] = "notSelected"
-            contentArr.insert(chunk, at: indexPath.row)
+        case .multipleOptions:
             
-        } else {
-            contentArr = self.arrConfig(arr: contentArr)
-            
-            var chunk = [String: Any]()
-            chunk = contentArr[indexPath.row]
-            contentArr.remove(at: indexPath.row)
-            
-            chunk["isSelected"] = "selected"
-            contentArr.insert(chunk, at: indexPath.row)
+            if self.selectedIndexArr.contains(indexPath) {
+                self.selectedIndexArr.remove(object: indexPath)
+            } else {
+                self.selectedIndexArr.append(indexPath)
+            }
+            break
+        default:
+            if contentArr[indexPath.row]["isSelected"] as! String == "selected" {
+                var chunk = [String: Any]()
+                chunk = contentArr[indexPath.row]
+                contentArr.remove(at: indexPath.row)
+                
+                chunk["isSelected"] = "notSelected"
+                contentArr.insert(chunk, at: indexPath.row)
+                
+            } else {
+                contentArr = self.arrConfig(arr: contentArr)
+                
+                var chunk = [String: Any]()
+                chunk = contentArr[indexPath.row]
+                contentArr.remove(at: indexPath.row)
+                
+                chunk["isSelected"] = "selected"
+                contentArr.insert(chunk, at: indexPath.row)
+            }
+            break
         }
 
         tableView.reloadData()
@@ -92,6 +130,8 @@ extension PopupListingViewController: UITableViewDelegate, UITableViewDataSource
 class PopupListingViewController: UIViewController {
     
     var popupType: PopupType!
+    
+    var selectedIndexArr = [IndexPath]()
 
     @IBOutlet var alphaView: UIView!
     @IBOutlet var containerView: UIView!
@@ -108,6 +148,8 @@ class PopupListingViewController: UIViewController {
     var viewController: UIViewController?
     
     var didSelect: ((_ selectedItem: String?, _ index: Int?) -> Void)?
+    
+    var didSelectIndexs: ((_ selectedIndexs: [IndexPath]?, _ index: Int?) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,13 +181,20 @@ class PopupListingViewController: UIViewController {
     static func showPopUpListing(onParentViewController parentViewController: UIViewController, heading headingText: String, selectedIndexForList selectedIndex: String,contents listArr: [[String: Any]], type: PopupType, selected: @escaping (_ value: String?, _ index: Int?) -> Void) {
         
         let classObj = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopupListingViewController") as! PopupListingViewController
-        classObj.popupListingConfig(onParentViewController: parentViewController, heading: headingText, selectedIndexForList: selectedIndex, contents: listArr)
+        classObj.popupListingConfig(onParentViewController: parentViewController, heading: headingText, selectedIndexForList: selectedIndex, selectedIndexArr: [], contents: listArr, type: type)
         classObj.didSelect = selected
-        classObj.popupType = type
+//        classObj.popupType = type
     }
     
+    static func showPopUpListingForMultipleOption(onParentViewController parentViewController: UIViewController, heading headingText: String, selectedIndexForList selectedIndex: [IndexPath],contents listArr: [[String: Any]], type: PopupType, selected: @escaping (_ selectedIndexs: [IndexPath]?, _ index: Int?) -> Void) {
+        
+        let classObj = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopupListingViewController") as! PopupListingViewController
+        classObj.popupListingConfig(onParentViewController: parentViewController, heading: headingText, selectedIndexForList: "",selectedIndexArr: selectedIndex, contents: listArr, type:type)
+        classObj.didSelectIndexs = selected
+//        classObj.popupType = type
+    }
 
-    func popupListingConfig (onParentViewController parentViewController: UIViewController, heading headingText: String, selectedIndexForList index: String, contents listArr: [[String: Any]]) -> Void {
+    func popupListingConfig (onParentViewController parentViewController: UIViewController, heading headingText: String, selectedIndexForList index: String, selectedIndexArr indexArr:[IndexPath], contents listArr: [[String: Any]], type: PopupType) -> Void {
         
         self.view.frame = UIScreen.main.bounds
         UIApplication.shared.windows.first!.addSubview(self.view)
@@ -154,6 +203,7 @@ class PopupListingViewController: UIViewController {
         parentViewController.view.bringSubview(toFront: self.view)
         
         viewController = parentViewController
+        self.popupType = type
         
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
             self.alphaView.alpha = 0.7
@@ -162,23 +212,30 @@ class PopupListingViewController: UIViewController {
             
         }
         
-        selectedIndex = IndexPath(row: Int(index)!, section: 0)
-        
         self.headingLbl.text = headingText
         contentArr = listArr
         
-        for i in 0..<contentArr.count {
-            var chunk = [String: Any]()
-            chunk = contentArr[i]
-            contentArr.remove(at: i)
-            
-            if i == Int(index)! {
-                chunk["isSelected"] = "selected"
-            } else {
-                chunk["isSelected"] = "notSelected"
+        switch type {
+        case .multipleOptions:
+            self.selectedIndexArr = indexArr
+            break
+        default:
+            selectedIndex = IndexPath(row: Int(index)!, section: 0)
+
+            for i in 0..<contentArr.count {
+                var chunk = [String: Any]()
+                chunk = contentArr[i]
+                contentArr.remove(at: i)
+
+                if i == Int(index)! {
+                    chunk["isSelected"] = "selected"
+                } else {
+                    chunk["isSelected"] = "notSelected"
+                }
+
+                contentArr.insert(chunk, at: i)
             }
-            
-            contentArr.insert(chunk, at: i)
+            break
         }
         
         print("new arr : \(contentArr)")
@@ -218,14 +275,23 @@ class PopupListingViewController: UIViewController {
             self.removeFromParentViewController()
             
             var row: Int = -1
-        
-            for i in 0..<self.contentArr.count {
-                
-                if self.contentArr[i]["isSelected"] as! String == "selected" {
-                    row = i
-                    break
-                }
+            
+            switch self.popupType {
+                case .multipleOptions:
+                break
+                default:
+                    
+                    for i in 0..<self.contentArr.count {
+                        
+                        if self.contentArr[i]["isSelected"] as! String == "selected" {
+                            row = i
+                            break
+                        }
+                    }
+                break
             }
+            
+            
             
             switch self.popupType {
             case .region:
@@ -262,6 +328,16 @@ class PopupListingViewController: UIViewController {
                 } else {
                     self.didSelect!(self.contentArr[row]["currency_name"] as? String, row)
                 }
+                break
+            case .sellerProperty:
+                if row == -1 {
+                    self.didSelect!("", row)
+                } else {
+                    self.didSelect!(self.contentArr[row]["title"] as? String, row)
+                }
+                break
+            case .multipleOptions:
+                self.didSelectIndexs!(self.selectedIndexArr, 0)
                 break
             default: break
             }

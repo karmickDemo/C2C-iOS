@@ -24,5 +24,7 @@ target 'C2C' do
   pod 'BSImagePicker', '~> 2.4'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'SDWebImage', '~> 4.0'
+  pod 'CHIPageControl', '~> 0.1.3'
 
 end

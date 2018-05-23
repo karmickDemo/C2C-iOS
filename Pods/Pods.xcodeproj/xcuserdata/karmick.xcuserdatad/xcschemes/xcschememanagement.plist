@@ -21,7 +21,7 @@
 		<key>BSGridCollectionViewLayout.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>17</integer>
+			<integer>18</integer>
 		</dict>
 		<key>BSImagePicker-BSImagePicker.xcscheme</key>
 		<dict>
@@ -39,6 +39,11 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>2</integer>
+		</dict>
+		<key>CHIPageControl.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>21</integer>
 		</dict>
 		<key>FBSDKCoreKit.xcscheme</key>
 		<dict>
@@ -120,12 +125,17 @@
 		<key>ReachabilitySwift.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>21</integer>
+			<integer>22</integer>
 		</dict>
 		<key>SDLoader.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>22</integer>
+			<integer>23</integer>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>24</integer>
 		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
@@ -137,12 +147,12 @@
 		<key>TTGSnackbar.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>23</integer>
+			<integer>25</integer>
 		</dict>
 		<key>UIImageViewModeScaleAspect.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>24</integer>
+			<integer>26</integer>
 		</dict>
 		<key>WARangeSlider.xcscheme</key>
 		<dict>

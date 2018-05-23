@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 extension LeftMenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,7 +52,6 @@ class LeftMenuViewController: UIViewController {
     
     var userType: String?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -64,9 +64,11 @@ class LeftMenuViewController: UIViewController {
         tapGesture.numberOfTapsRequired = 1
         self.alphaView.addGestureRecognizer(tapGesture)
         
+    
         userType = UserDefaults.standard.string(forKey: "PageType")!
         
         if userType == "Buyer" {
+            
             let dic1 = [
                 "image": "dashboardMenu",
                 "text": "Dashboard",
@@ -116,6 +118,8 @@ class LeftMenuViewController: UIViewController {
         
         self.menuTableView.reloadData()
     }
+    
+    
     
     static func showLeftMenu(onParentViewController parentViewController: UIViewController, selected: @escaping (_ value: AnyObject?, _ index: Int?) -> Void) {
         
@@ -176,106 +180,6 @@ class LeftMenuViewController: UIViewController {
     
     func push(withIndexPath indexPath: IndexPath) {
         
-        if userType == "Buyer" {
-            
-            let viewControllers: [UIViewController] = viewController!.navigationController!.viewControllers as [UIViewController];
-            
-            let viewControllerCurrent: UIViewController = viewControllers[viewControllers.count - 1]
-            print("last object \(viewControllerCurrent)")
-            
-            if indexPath.row == 0 {
-                
-                if viewControllerCurrent.isKind(of: DashBoardViewController.self) {
-                    
-                } else {
-                    
-                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                    let mDashBoardViewController = storyBoard.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
-                    viewController!.navigationController?.pushViewController(mDashBoardViewController, animated: true)
-                }
-                
-            } else if indexPath.row == 1 {
-                
-                if viewControllerCurrent.isKind(of: MyProfileViewController.self) {
-                    
-                } else {
-                    
-                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                    let myProfileViewController = storyBoard.instantiateViewController(withIdentifier: "MyProfileViewController") as! MyProfileViewController
-                    viewController!.navigationController?.pushViewController(myProfileViewController, animated: true)
-                }
-            } else if indexPath.row == 2 {
-                if viewControllerCurrent.isKind(of: SettingsViewController.self) {
-                    
-                } else {
-                    
-                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                    let mSettingsViewController = storyBoard.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
-                    viewController!.navigationController?.pushViewController(mSettingsViewController, animated: true)
-                }
-                
-            } else if indexPath.row == 3 {
-                if viewControllerCurrent.isKind(of: ChangePasswordViewController.self) {
-                    
-                } else {
-                    
-                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                    let mChangePasswordViewController = storyBoard.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! ChangePasswordViewController
-                    viewController!.navigationController?.pushViewController(mChangePasswordViewController, animated: true)
-                }
-                
-            } else if indexPath.row == 4 {
-                
-                PopupTwoOptionsViewController.showPopUpTwoOptions(onParentViewController: viewController!, alertText: "Alert", descriptionText: "Are you sure you want to logout?", cancelBtnTitle: "CANCEL", okBtnTitle: "YES", activityType: .logout, selected: { (_, _) in })
-                
-            }
-            
-        } else if userType == "Seller" {
-            
-            let viewControllers: [UIViewController] = viewController!.navigationController!.viewControllers as [UIViewController];
-            
-            let viewControllerCurrent: UIViewController = viewControllers[viewControllers.count - 1]
-            print("last object \(viewControllerCurrent)")
-            
-            if indexPath.row == 0 {
-                
-                if viewControllerCurrent.isKind(of: DashBoardViewController.self) {
-                    
-                } else {
-                    
-                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                    let mDashBoardViewController = storyBoard.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
-                    viewController!.navigationController?.pushViewController(mDashBoardViewController, animated: true)
-                }
-                
-            } else if indexPath.row == 1{
-                
-                if viewControllerCurrent.isKind(of: MyProfileViewController.self) {
-                    
-                } else {
-                    
-                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                    let myProfileViewController = storyBoard.instantiateViewController(withIdentifier: "MyProfileViewController") as! MyProfileViewController
-                    viewController!.navigationController?.pushViewController(myProfileViewController, animated: true)
-                }
-            } else if indexPath.row == 2{
-                    if viewControllerCurrent.isKind(of: ChangePasswordViewController.self) {
-                        
-                    } else {
-                        
-                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                        let mChangePasswordViewController = storyBoard.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! ChangePasswordViewController
-                        viewController!.navigationController?.pushViewController(mChangePasswordViewController, animated: true)
-                    }
-              
-                
-            } else if indexPath.row == 3 {
-                
-                PopupTwoOptionsViewController.showPopUpTwoOptions(onParentViewController: viewController!, alertText: "Alert", descriptionText: "Are you sure you want to logout?", cancelBtnTitle: "CANCEL", okBtnTitle: "YES", activityType: .logout, selected: { (_, _) in })
-                
-            }
-            
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -283,14 +187,4 @@ class LeftMenuViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

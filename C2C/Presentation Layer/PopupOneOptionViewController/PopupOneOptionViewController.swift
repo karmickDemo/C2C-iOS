@@ -12,6 +12,7 @@ import UIKit
     case show
     case registrationSuccess
     case propertyAdded
+    case offerAcceptReject
 }
 
 class PopupOneOptionViewController: UIViewController {
@@ -26,6 +27,7 @@ class PopupOneOptionViewController: UIViewController {
     var purpose: String = ""
     
     var popupTypeNormal: PopupTypeNormal!
+    var didSelectOption: ((_ value: String?, _ index: Int?) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,12 +49,13 @@ class PopupOneOptionViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    static func showPopUpOneOptions(onParentViewController parentViewController: UIViewController, alertText: String, descriptionText: String, okBtnTitle: String, activityType: PopupTypeNormal) -> Void {
+    static func showPopUpOneOptions(onParentViewController parentViewController: UIViewController, alertText: String, descriptionText: String, okBtnTitle: String, activityType: PopupTypeNormal, selected: @escaping (_ value: String?, _ index: Int?) -> Void) -> Void {
         
         let classObj = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopupOneOptionViewController") as! PopupOneOptionViewController
         classObj.popupConfig(onParentViewController: parentViewController, alertText: alertText, descriptionText: descriptionText, okBtnTitle: okBtnTitle)
         
         classObj.popupTypeNormal = activityType
+        classObj.didSelectOption = selected
     }
     
     func popupConfig(onParentViewController parentViewController: UIViewController, alertText: String, descriptionText: String, okBtnTitle: String) -> Void {
@@ -126,6 +129,17 @@ class PopupOneOptionViewController: UIViewController {
                 self.removeFromParentViewController()
                 
                 self.popBack()
+            }
+            break
+        case .offerAcceptReject:
+            UIView.animate(withDuration: 0.3, animations: {
+                self.containerView.transform = CGAffineTransform(translationX: 0, y: screenHeight)
+                self.alphaView.alpha = 0
+            }) { (_) in
+                self.view.removeFromSuperview()
+                self.removeFromParentViewController()
+                
+                self.didSelectOption!("refresh", 0)
             }
             break
         default: break

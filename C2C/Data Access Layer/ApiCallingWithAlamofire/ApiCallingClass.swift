@@ -20,8 +20,7 @@ struct APIError: Error {
 class ApiCallingClass {
 
     
-    static func BaseApiCalling(withurlString urlString: String , withParameters parameters: Parameters, withSuccess success:@escaping (_ response: (Any)) -> Void, andFailure failure:@escaping (_ error: APIError?) -> Void) {
-        
+    static func BaseApiCalling(withurlString urlString: String, withParameters parameters: Parameters, withSuccess success:@escaping (_ response: (Any)) -> Void, andFailure failure:@escaping (_ error: APIError?) -> Void) {
         
         let reachability = Reachability()!
         
@@ -30,7 +29,7 @@ class ApiCallingClass {
             SDLoaderConfiguration.loaderConfig()
             SDLoaderConfiguration.sdLoader.startAnimating(atView: (UIApplication.shared.windows.first)!)
             
-            print("Min url==\(urlString)")
+            print("Main url==\(urlString)")
             print("Parameters==\(parameters)")
             
             Alamofire.request(urlString, method:.post, parameters:parameters, encoding: URLEncoding.default).responseJSON{ response in
@@ -81,8 +80,6 @@ class ApiCallingClass {
         }
     }
     
-    
-    
     static func BaseApiCallingGetMethod(withurlString urlString: String, withSuccess success:@escaping (_ response: (Any)) -> Void, andFailure failure:@escaping (_ error: Error?) -> Void) {
         
         let reachability = Reachability()!
@@ -91,7 +88,7 @@ class ApiCallingClass {
             SDLoaderConfiguration.loaderConfig()
             SDLoaderConfiguration.sdLoader.startAnimating(atView: (UIApplication.shared.windows.first)!)
             
-            print("Min url==\(urlString)")
+            print("Main url==\(urlString)")
             
             Alamofire.request(urlString, method:.get, encoding: URLEncoding.default).responseJSON{ response in
                 
@@ -150,7 +147,8 @@ class ApiCallingClass {
             SDLoaderConfiguration.loaderConfig()
             SDLoaderConfiguration.sdLoader.startAnimating(atView: (UIApplication.shared.windows.first)!)
             
-            print("Min url==\(urlString)")
+            print("Main url==\(urlString)")
+            print("Parameters==\(parameters)")
             
             let headers: HTTPHeaders = [
                 /* "Authorization": "your_access_token",  in case you need authorization header */
@@ -231,7 +229,8 @@ class ApiCallingClass {
             SDLoaderConfiguration.loaderConfig()
             SDLoaderConfiguration.sdLoader.startAnimating(atView: (UIApplication.shared.windows.first)!)
             
-            print("Min url==\(urlString)")
+            print("Main url==\(urlString)")
+            print("Parameters==\(parameters)")
             
             let headers: HTTPHeaders = [
                 /* "Authorization": "your_access_token",  in case you need authorization header */
@@ -323,6 +322,60 @@ class ApiCallingClass {
         }
         
     }//ALamofire
+    
+    static func BaseApiCallingWithoutLoader(withurlString urlString: String , withParameters parameters: Parameters, withSuccess success:@escaping (_ response: (Any)) -> Void, andFailure failure:@escaping (_ error: APIError?) -> Void) {
+        
+        let reachability = Reachability()!
+        
+        if reachability.connection != .none {
+            
+            print("Main url==\(urlString)")
+            print("Parameters==\(parameters)")
+            
+            Alamofire.request(urlString, method:.post, parameters:parameters, encoding: URLEncoding.default).responseJSON{ response in
+                
+                let json = try? JSONSerialization.jsonObject(with: response.data!, options: [])
+                if let jsonResponse = json{
+                    print("response json : \(jsonResponse)")
+                }
+                
+                let jsonStr = String.init(data: response.data!, encoding: String.Encoding.utf8)
+                if let errorStr = jsonStr{
+                    print("response str : \(errorStr)")
+                }
+                
+                if (response.error != nil) {
+                    
+                    let error = APIError(errorCode: -201, errorDetails: response.error!.localizedDescription)
+                    failure (error)
+                    
+                } else {
+                    
+                    let result =  response.result.value
+                    let statusCode = response.response?.statusCode
+                    print("StatusCode= \(statusCode!)")
+                    
+                    if (statusCode == 200)
+                    {
+                        success(result!)
+                    }
+                    else
+                    {
+                        let error = APIError(errorCode: -202, errorDetails: "api failure")
+                        //                        failure (response.result.error)
+                        failure (error)
+                    }
+                    
+                }//response else
+                
+            }//ALamofire
+        }
+        else
+        {
+            let error = APIError(errorCode: -200, errorDetails: "No network")
+            failure(error)
+        }
+    }
 }
     
 

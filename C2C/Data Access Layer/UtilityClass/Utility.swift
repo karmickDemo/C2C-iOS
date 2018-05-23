@@ -40,3 +40,20 @@ func instantiateViewController(storyboardID: String) -> UIViewController {
     return viewController
 }
 
+extension String {
+    var isDouble: Bool {
+        return Double(self) != nil
+    }
+}
+
+extension Array where Element: Equatable {
+    
+    mutating func remove(object: Element) {
+        
+        if let index = index(of: object) {
+            
+            remove(at: index)
+        }
+    }
+}
+

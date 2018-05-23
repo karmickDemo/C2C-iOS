@@ -11,6 +11,23 @@ PODS:
   - BSImagePicker (2.7.1):
     - BSGridCollectionViewLayout (~> 1.2.0)
     - UIImageViewModeScaleAspect (= 1.5)
+  - CHIPageControl (0.1.5):
+    - CHIPageControl/Aji (= 0.1.5)
+    - CHIPageControl/Aleppo (= 0.1.5)
+    - CHIPageControl/Chimayo (= 0.1.5)
+    - CHIPageControl/Fresno (= 0.1.5)
+    - CHIPageControl/Jalapeno (= 0.1.5)
+    - CHIPageControl/Jaloro (= 0.1.5)
+    - CHIPageControl/Paprika (= 0.1.5)
+    - CHIPageControl/Puya (= 0.1.5)
+  - CHIPageControl/Aji (0.1.5)
+  - CHIPageControl/Aleppo (0.1.5)
+  - CHIPageControl/Chimayo (0.1.5)
+  - CHIPageControl/Fresno (0.1.5)
+  - CHIPageControl/Jalapeno (0.1.5)
+  - CHIPageControl/Jaloro (0.1.5)
+  - CHIPageControl/Paprika (0.1.5)
+  - CHIPageControl/Puya (0.1.5)
   - Crashlytics (3.9.3):
     - Fabric (~> 1.7.2)
   - Fabric (1.7.2)
@@ -72,6 +89,9 @@ PODS:
   - ObjectMapper (3.1.0)
   - ReachabilitySwift (4.1.0)
   - SDLoader (0.2.0)
+  - SDWebImage (4.2.3):
+    - SDWebImage/Core (= 4.2.3)
+  - SDWebImage/Core (4.2.3)
   - SwiftyJSON (4.0.0)
   - TTGSnackbar (1.7.1)
   - TwitterCore (3.1.0)
@@ -84,6 +104,7 @@ DEPENDENCIES:
   - Alamofire
   - ANLoader
   - BSImagePicker (~> 2.4)
+  - CHIPageControl (~> 0.1.3)
   - Crashlytics
   - Fabric
   - FacebookCore
@@ -96,6 +117,7 @@ DEPENDENCIES:
   - ObjectMapper (~> 3.1)
   - ReachabilitySwift
   - SDLoader
+  - SDWebImage (~> 4.0)
   - SwiftyJSON
   - TTGSnackbar
   - TwitterKit
@@ -107,6 +129,7 @@ SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BSGridCollectionViewLayout: 8f12c8e1e08c47057f5a39a6828f4395f043d78f
   BSImagePicker: eb12948a6e71b9855c2c37723dfd989b9b4288bd
+  CHIPageControl: 79d19a8ee2e35fa3c1da6533adb5364c77b5cfea
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
   Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   FacebookCore: 3ffa190a3f1f96cec0e44d3fc221bc322c595ffa
@@ -127,6 +150,7 @@ SPEC CHECKSUMS:
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   SDLoader: e35b571db413a4a98b6f58469b16dc095289c9f6
+  SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   TTGSnackbar: 26e9c1f842269d0eeae8c51f7d8cbea669d492f1
   TwitterCore: 644d59e75abccb26cf0a9050d2c4dea0e5412241
@@ -134,6 +158,6 @@ SPEC CHECKSUMS:
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
   WARangeSlider: 54b3e0853b8d16c444fd539005901aecee86837d
 
-PODFILE CHECKSUM: 83eb1ef7ef5a1f31261b5ec5f12dd3398c847dbe
+PODFILE CHECKSUM: d114980ad3d4bcb572097170bd702ed73fecc9b2
 
 COCOAPODS: 1.4.0

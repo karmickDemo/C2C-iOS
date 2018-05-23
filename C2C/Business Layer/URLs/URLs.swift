@@ -12,7 +12,8 @@ import Foundation
 class URLs {
     
 //    static let mainURL = "http://192.168.1.22/croom/api/"
-    static let mainURL = "http://karmickdev.com/croom/api/"
+//    static let mainURL = "http://karmickdev.com/croom/api/"
+    static let mainURL = "http://www.editoutsource.com/croom/api/"
     
     static let loginURL = mainURL + "login"
     static let registrationBuyerURL = mainURL + "buyer_register"
@@ -32,5 +33,23 @@ class URLs {
     static let getSettingsURL = mainURL + "get_settings"
     static let updateSettingsURL = mainURL + "update_settings"
     static let creditDetailURL = mainURL + "credit_details"
+    static let addOfferURL = mainURL + "add_edit_offer"
+    static let addRemoveWishlistURL = mainURL + "add_remove_wishlist"
+    static let wishlistURL = mainURL + "wishlist"
+    static let dashboardURL = mainURL + "getdashboard"
+    static let editProfileURL = mainURL + "update_profile_details"
+    static let myProfileURL = mainURL + "myProfile"
+    static let getOfferSellerListURL = mainURL + "getOfferList"
+    static let getOfferBuyerListURL = mainURL + "getOfferBuyerList"
+    static let getBuyerDealListURL = mainURL + "getBuyerDealList"
+    static let getSellerDealListURL = mainURL + "getSellerDealList"
+    static let offerAcceptURL = mainURL + "offer_accept"
+    static let offerRejectURL = mainURL + "offer_reject"
+    static let getBuyerTransactionListURL = mainURL + "getBuyerTransactionList"
+    static let getSellerTransactionListURL = mainURL + "getSellerTransactionList"
+    static let buyerMessageListURL = mainURL + "get_msg_list"
+    static let logoutURL = mainURL + "logout"
+    static let sendMessageURL = mainURL + "message"
+    static let forgotPasswordURL = mainURL + "forgotPasswordRecovery"
     
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import Crashlytics
+import Alamofire
 
 
 //MARK: UICollectionViewCell Connections
@@ -104,7 +105,7 @@ extension DashBoardViewController : UICollectionViewDelegateFlowLayout,UICollect
                 
                 if (Device.IS_IPHONE_5){
                     print("iphone 5")
-                    cell?.lbl_HeadingName_Dashboard.font = UIFont(name:  (cell?.lbl_HeadingName_Dashboard.font.fontName)!, size: 12)
+                    cell?.lbl_HeadingName_Dashboard.font = UIFont(name:  (cell?.lbl_HeadingName_Dashboard.font.fontName)!, size: 11)
                 } else {
                     cell?.lbl_HeadingName_Dashboard.font = UIFont(name:  (cell?.lbl_HeadingName_Dashboard.font.fontName)!, size: 16)
                 }
@@ -127,7 +128,7 @@ extension DashBoardViewController : UICollectionViewDelegateFlowLayout,UICollect
                         print("iphone 5")
                         cell?.lbl_HeadingName_Dashboard_long.font = UIFont(name:  (cell?.lbl_HeadingName_Dashboard_long.font.fontName)!, size: 11)
                     } else {
-                        cell?.lbl_HeadingName_Dashboard_long.font = UIFont(name:  (cell?.lbl_HeadingName_Dashboard_long.font.fontName)!, size: 13)
+                        cell?.lbl_HeadingName_Dashboard_long.font = UIFont(name:  (cell?.lbl_HeadingName_Dashboard_long.font.fontName)!, size: 16)
                     }
                 
                     return cell!
@@ -146,7 +147,7 @@ extension DashBoardViewController : UICollectionViewDelegateFlowLayout,UICollect
                     print("iphone 5")
                     cell?.lbl_HeadingName_Dashboard.font = UIFont(name:  (cell?.lbl_HeadingName_Dashboard.font.fontName)!, size: 11)
                 } else {
-                    cell?.lbl_HeadingName_Dashboard.font = UIFont(name:  (cell?.lbl_HeadingName_Dashboard.font.fontName)!, size: 13)
+                    cell?.lbl_HeadingName_Dashboard.font = UIFont(name:  (cell?.lbl_HeadingName_Dashboard.font.fontName)!, size: 16)
                 }
                 print("font size===\(String(describing: cell?.lbl_HeadingName_Dashboard.font))")
 
@@ -158,74 +159,6 @@ extension DashBoardViewController : UICollectionViewDelegateFlowLayout,UICollect
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        if nameStr == "Buyer"
-        {
-            switch true {
-                case indexPath.row == 0 :
-                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                    let mDashBoardViewController = storyBoard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-                    self.navigationController?.pushViewController(mDashBoardViewController, animated: false)
-                    break
-                case indexPath.row == 1 :
-                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                    let mWishListViewController = storyBoard.instantiateViewController(withIdentifier: "WishListViewController") as! WishListViewController
-                    self.navigationController?.pushViewController(mWishListViewController, animated: false)
-                    break
-                case indexPath.row == 2 :
-                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                    let mTransactionViewController = storyBoard.instantiateViewController(withIdentifier: "TransactionViewController") as! TransactionViewController
-                    self.navigationController?.pushViewController(mTransactionViewController, animated: false)
-                    break
-                case indexPath.row == 3 :
-                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                    let mDashBoardViewController = storyBoard.instantiateViewController(withIdentifier: "CommunicationsViewController") as! CommunicationsViewController
-                    self.navigationController?.pushViewController(mDashBoardViewController, animated: false)
-                    break
-                case indexPath.row == 4 :
-                    let mSetPreferencesViewController = instantiateViewController(storyboardID: "SetPreferencesViewController") as! SetPreferencesViewController
-                    self.navigationController?.pushViewController(mSetPreferencesViewController, animated: false)
-                    break
-                case indexPath.row == 5 :
-                    let mMyOffersViewController = instantiateViewController(storyboardID: "MyOffersViewController") as! MyOffersViewController
-                    self.navigationController?.pushViewController(mMyOffersViewController, animated: false)
-                    break
-            default :
-                let mDealListingViewController = instantiateViewController(storyboardID: "DealListingViewController") as! DealListingViewController
-                self.navigationController?.pushViewController(mDealListingViewController, animated: false)
-                break
-            }
-        } else {
-            
-            switch true
-            {
-            case indexPath.row == 0 :
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let mSellerPropertiesViewController = storyBoard.instantiateViewController(withIdentifier: "SellerPropertiesViewController") as! SellerPropertiesViewController
-                self.navigationController?.pushViewController(mSellerPropertiesViewController, animated: false)
-                break
-            case indexPath.row == 1 :
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let mTransactionViewController = storyBoard.instantiateViewController(withIdentifier: "TransactionViewController") as! TransactionViewController
-                self.navigationController?.pushViewController(mTransactionViewController, animated: false)
-                break
-                
-            case indexPath.row == 2 :
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let mDashBoardViewController = storyBoard.instantiateViewController(withIdentifier: "CommunicationsViewController") as! CommunicationsViewController
-                self.navigationController?.pushViewController(mDashBoardViewController, animated: false)
-                break
-                
-            case indexPath.row == 3 :
-                let mMyOffersViewController = instantiateViewController(storyboardID: "MyOffersViewController") as! MyOffersViewController
-                self.navigationController?.pushViewController(mMyOffersViewController, animated: false)
-                break
-            default :
-                let mDealListingViewController = instantiateViewController(storyboardID: "DealListingViewController") as! DealListingViewController
-                self.navigationController?.pushViewController(mDealListingViewController, animated: false)
-                break
-            }
-            
-        }
         
     }
 }
@@ -239,94 +172,197 @@ class DashBoardViewController: UIViewController {
     
     @IBOutlet var collectionVw: UICollectionView!
     
+    let refreshControle = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         UIApplication.shared.statusBarView?.backgroundColor = headerColor
         
-        let dic1 = [
-            "labelText": "SEARCH PROPERTY",
-            "image": "search-property",
-            ]
-        let dic2 = [
-            "labelText": "WISHLIST",
-            "image": "wishlist",
-            ]
-        let dic3 = [
-            "labelText": "MY TRANSACTIONS",
-            "image": "transaction",
-            ]
-        let dic4 = [
-            "labelText": "COMMUNICATIONS",
-            "image": "chat",
-            ]
-        let dic5 = [
-            "labelText": "PREFERENCES",
-            "image": "preference",
-            ]
-//        let dic6 = [
-//            "labelText": "SETTINGS",
-//            "image": "setting",
-//            ]
-        let dic7 = [
-            "labelText": "5 NEW OFFERS\n2 PENDING OFFERS\n1 REJECTED OFFER",
-            "image": "offer",
-            ]
-        let dic8 = [
-            "labelText": "4 NEW DEALS\n2 CONFIRMED DEALS",
-            "image": "deals",
-            ]
-        
-        ///for seller
-        
-        let dic9 = [
-            "labelText": "MY PROPERTIES",
-            "image": "my-property",
-            ]
-        let dic10 = [
-            "labelText": "MY TRANSACTIONS",
-            "image": "transaction",
-            ]
-        let dic11 = [
-            "labelText": "COMMUNICATIONS",
-            "image": "chat",
-            ]
-//        let dic12 = [
-//            "labelText": "SETTINGS",
-//            "image": "setting",
-//            ]
-        let dic13 = [
-            "labelText": "5 NEW OFFERS\n2 PENDING OFFERS\n1 REJECTED OFFER",
-            "image": "offer",
-            ]
-        let dic14 = [
-            "labelText": "4 NEW DEALS\n2 CONFIRMED DEALS",
-            "image": "deals",
-            ]
+        self.collectionVw.addSubview(refreshControle)
         
         UserDefaults.standard.bool(forKey: "PageType")
         UserDefaults.standard.integer(forKey: "PageType")
         UserDefaults.standard.string(forKey: "PageType")
         
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         controller = storyboard.instantiateViewController(withIdentifier: "LeftMenuViewController")
         
-        nameStr =  UserDefaults.standard.string(forKey: "PageType")!
-        print("namestring\(nameStr)")
+        self.getDashboardList()
         
-        if nameStr == "Buyer"
-        {
-            arrDashboardContent = [dic1, dic2, dic3, dic4, dic5, dic7, dic8]
-        }
-        else
-        {
-            arrDashboardContent = [dic9, dic10, dic11, dic13, dic14]
-        }
+    }
     
-        self.collectionVw.dataSource=self
-        self.collectionVw.delegate=self
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
+        if scrollView == self.collectionVw {
+            if self.refreshControle.isRefreshing {
+                refreshTable();
+            }
+        }
+    }
+    
+    func refreshTable() {
+        self.refreshControle.endRefreshing();
+        self.getDashboardList()
+    }
+    
+    private func getDashboardList() {
+        
+        let user_id: Int =  UserDefaults.standard.integer(forKey: "user_id")
+        let user_type: String = UserDefaults.standard.string(forKey: "user_type")!
+        
+        let parameter: Parameters = [
+            "user_id": String(user_id),
+            "user_type": user_type,
+            ]
+        
+        ApiCallingClass.BaseApiCalling(withurlString: URLs.dashboardURL, withParameters: parameter, withSuccess: { (response) in
+            
+            let mainResponse = response as! [String: Any]
+            let success = mainResponse["success"] as! Bool
+            
+            if success == true {
+                
+                var newDealCount: String = ""
+                var confrmedDealCount: String = ""
+                
+                var acceptedOfferCount: String = ""
+                var pendingOfferCount: String = ""
+                var rejectedOfferCount: String = ""
+                
+                var newDealHeading: String = ""
+                var confrmedDealHeading: String = ""
+                
+                var acceptedOfferHeading: String = ""
+                var pendingOfferHeading: String = ""
+                var rejectedOfferHeading: String = ""
+                
+                
+                if let newDeal = mainResponse["new_deal_count"] as? Int {
+                    newDealCount = String(newDeal)
+                    
+                    if newDeal > 1 {
+                        newDealHeading = " New Deals"
+                    } else {
+                        newDealHeading = " New Deal"
+                    }
+                }
+                if let confrmedDeal = mainResponse["confirm_deal_count"] as? Int {
+                    confrmedDealCount = String(confrmedDeal)
+                    
+                    if confrmedDeal > 1 {
+                        newDealHeading = " Confirmed Deals"
+                    } else {
+                        confrmedDealHeading = " Confirmed Deal"
+                    }
+                }
+                
+                if let acceptedOffer = mainResponse["accepted_offer_count"] as? Int {
+                    acceptedOfferCount = String(acceptedOffer)
+                    
+                    if acceptedOffer > 1 {
+                        acceptedOfferHeading = " Accepted Offers"
+                    } else {
+                        acceptedOfferHeading = " Accepted Offer"
+                    }
+                }
+                if let pendingOffer = mainResponse["pending_offer_count"] as? Int {
+                    pendingOfferCount = String(pendingOffer)
+                    
+                    if pendingOffer > 1 {
+                        pendingOfferHeading = " Pending Offers"
+                    } else {
+                        pendingOfferHeading = " Pending Offer"
+                    }
+                }
+                if let rejectedOffer = mainResponse["rejected_offer_count"] as? Int {
+                    rejectedOfferCount = String(rejectedOffer)
+                    
+                    if rejectedOffer > 1 {
+                        rejectedOfferHeading = " Rejected Offers"
+                    } else {
+                        rejectedOfferHeading = " Rejected Offer"
+                    }
+                }
+                
+                let offerStr: String = pendingOfferCount + pendingOfferHeading + "\n" + acceptedOfferCount + acceptedOfferHeading + "\n" + rejectedOfferCount + rejectedOfferHeading
+                
+                let dealStr: String = newDealCount + newDealHeading + "\n" + confrmedDealCount + confrmedDealHeading
+                
+                
+                let dic1 = [
+                    "labelText": "SEARCH CREDIT",
+                    "image": "search-property",
+                    ]
+                let dic2 = [
+                    "labelText": "WISHLIST",
+                    "image": "wishlist",
+                    ]
+                let dic3 = [
+                    "labelText": "MY TRANSACTIONS",
+                    "image": "transaction",
+                    ]
+                let dic4 = [
+                    "labelText": "COMMUNICATIONS",
+                    "image": "chat",
+                    ]
+                let dic5 = [
+                    "labelText": "PREFERENCES",
+                    "image": "preference",
+                    ]
+                let dic7 = [
+                    "labelText": offerStr,
+                    "image": "offer",
+                    ]
+                let dic8 = [
+                    "labelText": dealStr,
+                    "image": "deals",
+                    ]
+                
+                ///for seller
+                
+                let dic9 = [
+                    "labelText": "MY CREDITS",
+                    "image": "my-property",
+                    ]
+                let dic10 = [
+                    "labelText": "MY TRANSACTIONS",
+                    "image": "transaction",
+                    ]
+                let dic11 = [
+                    "labelText": "COMMUNICATIONS",
+                    "image": "chat",
+                    ]
+                let dic13 = [
+                    "labelText": offerStr,
+                    "image": "offer",
+                    ]
+                let dic14 = [
+                    "labelText": dealStr,
+                    "image": "deals",
+                    ]
+                
+                self.nameStr =  UserDefaults.standard.string(forKey: "PageType")!
+                print("namestring\(self.nameStr)")
+                
+                if self.nameStr == "Buyer"
+                {
+                    self.arrDashboardContent = [dic1, dic2, dic3, dic4, dic5, dic7, dic8]
+                }
+                else
+                {
+                    self.arrDashboardContent = [dic9, dic10, dic11, dic13, dic14]
+                }
+                
+                self.collectionVw.dataSource=self
+                self.collectionVw.delegate=self
+                
+                self.collectionVw.reloadData()
+            }
+            
+        }) { (erorr) in
+            
+        }
     }
 
     

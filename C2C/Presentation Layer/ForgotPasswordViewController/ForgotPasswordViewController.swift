@@ -8,6 +8,7 @@
 
 import UIKit
 import TTGSnackbar
+import Alamofire
 
 class ForgotPasswordViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet var btn_forgotPwd: UIButton!
@@ -18,8 +19,6 @@ class ForgotPasswordViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        print("hello world")
         UIApplication.shared.statusBarView?.backgroundColor = headerColor
         self.btn_forgotPwd.layer.borderWidth = 1
         self.btn_forgotPwd.layer.borderColor = UIColor(red:133/255, green:133/255, blue:133/255, alpha: 1).cgColor
@@ -32,6 +31,7 @@ class ForgotPasswordViewController: UIViewController,UITextFieldDelegate {
         
         self.txtfld_EnterEmailAddress.delegate = self
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -51,8 +51,36 @@ class ForgotPasswordViewController: UIViewController,UITextFieldDelegate {
 
         if (self.txtfld_EnterEmailAddress.text?.isEmail()) == false {
             TTGSnackbarConfiguration.snackbarConfiguration(message: "Please enter a valid email", duration: TTGSnackbarDuration.middle)
-        }else{
+        }else {
+            self.forgotPwdUrlFire()
+        }
+    }
+    
+    private func forgotPwdUrlFire() {
+        
+        let parameter: Parameters = [
+            "email": self.txtfld_EnterEmailAddress.text!,
+        ]
+        
+        ApiCallingClass.BaseApiCalling(withurlString: URLs.forgotPasswordURL, withParameters: parameter, withSuccess: { (response) in
+            if response is [String: Any] {
+                
+                let Main_response = response as! [String: Any]
+                let success = Main_response["success"] as! Bool
+                
+                if success == true{
+                    
+                    self.txtfld_EnterEmailAddress.text! = ""
+                    
+                    PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Successful", descriptionText: Main_response["message"] as! String, okBtnTitle: "OK", activityType: .show, selected: { (_, _) in })
+                } else {
+                    PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Failed", descriptionText: Main_response["message"] as! String, okBtnTitle: "OK", activityType: .show, selected: { (_, _) in })
+                }
+            }
+        }) { (error) in
+            print ("error \((String(describing: error!.localizedDescription)))")
             
+            PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Failed", descriptionText: (String(describing: error!.localizedDescription)), okBtnTitle: "OK", activityType: .show, selected: { (_, _) in })
         }
     }
     

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9628A5AA145E3F9397ED47BB332505C0"
+               BlueprintIdentifier = "74ECC648F6C2110AA4D1A5465E2AA9E0"
                BlueprintName = "WARangeSlider"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "WARangeSlider.framework">

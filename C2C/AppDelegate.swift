@@ -22,8 +22,7 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
-    var deviceTokenString = ""
-
+    var deviceTokenString: String!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UNUserNotificationCenter.current().delegate = self
@@ -40,8 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         Fabric.with([Crashlytics.self])
         
         let signedInStatus = UserDefaults.standard.string(forKey: "signIn")
+        let user_id: Int =  UserDefaults.standard.integer(forKey: "user_id")
         
-        if signedInStatus == "signedIn" {
+        if signedInStatus == "signedIn" && user_id > 0 {
             let vc = instantiateViewController(storyboardID: "DashBoardViewController") as! DashBoardViewController
             let navController = UINavigationController.init(rootViewController: vc)
             navController.navigationBar.isHidden = true
@@ -83,6 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
     }
+    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
         // print(deviceToken)
@@ -90,7 +91,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         print(token)
         UserDefaults.standard.set(token, forKey: "token")
         deviceTokenString = token
-        print("1st\(deviceTokenString)")
     }
 
     // MARK: - Core Data stack
@@ -142,9 +142,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
-         // IQKeyboardManager.sharedManager().disabledToolbarClasses = [AdministrativeMessagesViewController.self]
-         IQKeyboardManager.sharedManager().disabledDistanceHandlingClasses.append(AdministrativeMessagesViewController.self)
-        
     }
 
 }

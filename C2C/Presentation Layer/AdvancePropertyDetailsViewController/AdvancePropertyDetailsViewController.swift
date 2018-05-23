@@ -225,13 +225,13 @@ class AdvancePropertyDetailsViewController: UIViewController {
                 if success == true {
                     
                     if self.pageFrom == "registrationSeller" {
-                        PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Successful", descriptionText: mainResponse["message"] as! String, okBtnTitle: "OK", activityType: .registrationSuccess)
+                        PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Successful", descriptionText: mainResponse["message"] as! String, okBtnTitle: "OK", activityType: .registrationSuccess, selected: { (_, _) in })
                     } else if self.pageFrom == "propertyList" {
-                        PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Successful", descriptionText: mainResponse["message"] as! String, okBtnTitle: "OK", activityType: .propertyAdded)
+                        PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Successful", descriptionText: mainResponse["message"] as! String, okBtnTitle: "OK", activityType: .propertyAdded, selected: { (_, _) in })
                     }
                     
                 } else {
-                    PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Failed", descriptionText: mainResponse["message"] as! String, okBtnTitle: "OK", activityType: .show)
+                    PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Failed", descriptionText: mainResponse["message"] as! String, okBtnTitle: "OK", activityType: .show, selected: { (_, _) in })
                 }
             }
             
@@ -240,9 +240,9 @@ class AdvancePropertyDetailsViewController: UIViewController {
             print ("error \((String(describing: error!.localizedDescription)))")
             
             if (error)?.errorCode == -200 {
-                PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Not connected", descriptionText: "Device is not connected to internet.", okBtnTitle: "OK", activityType: .show)
+                PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Not connected", descriptionText: "Device is not connected to internet.", okBtnTitle: "OK", activityType: .show, selected: { (_, _) in })
             } else {
-                PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Failed", descriptionText: error!.localizedDescription, okBtnTitle: "OK", activityType: .show)
+                PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Failed", descriptionText: error!.localizedDescription, okBtnTitle: "OK", activityType: .show, selected: { (_, _) in })
             }
         }
     }
@@ -643,7 +643,7 @@ extension AdvancePropertyDetailsViewController: UITextFieldDelegate {
                                 self.creditTypeArr = mainResponse["data"] as! [[String: Any]]
                                 self.callPopup(tag: textField.tag)
                             } else {
-                                PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Opps", descriptionText: "No credit types found.", okBtnTitle: "OK", activityType: .show)
+                                PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Opps", descriptionText: "No credit types found.", okBtnTitle: "OK", activityType: .show, selected: { (_, _) in })
                             }
                         }
                         
@@ -669,7 +669,7 @@ extension AdvancePropertyDetailsViewController: UITextFieldDelegate {
                                 self.regionArr = mainResponse["data"] as! [[String: Any]]
                                 self.callPopup(tag: textField.tag)
                             } else {
-                                PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Opps", descriptionText: "No region found.", okBtnTitle: "OK", activityType: .show)
+                                PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Opps", descriptionText: "No region found.", okBtnTitle: "OK", activityType: .show, selected: { (_, _) in })
                             }
                         }
                         
@@ -682,7 +682,7 @@ extension AdvancePropertyDetailsViewController: UITextFieldDelegate {
             } else if contentArr[textField.tag]["placeholderText"] as! String == "Country *" {
                 
                 if contentArr[textField.tag - 1]["text"] as! String == "" {
-                    PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Opps", descriptionText: "Please select a Region before selecting country.", okBtnTitle: "OK", activityType: .show)
+                    PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Opps", descriptionText: "Please select a Region before selecting country.", okBtnTitle: "OK", activityType: .show, selected: { (_, _) in })
                 } else {
                     
                     let index = contentArr[textField.tag - 1]["selectedIndex"] as! String
@@ -703,7 +703,7 @@ extension AdvancePropertyDetailsViewController: UITextFieldDelegate {
                                 self.countryArr = mainResponse["data"] as! [[String: Any]]
                                 self.callPopup(tag: textField.tag)
                             } else {
-                                PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Opps", descriptionText: "No countries found for this region", okBtnTitle: "OK", activityType: .show)
+                                PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Opps", descriptionText: "No countries found for this region", okBtnTitle: "OK", activityType: .show, selected: { (_, _) in })
                             }
                         }
                         
@@ -726,7 +726,7 @@ extension AdvancePropertyDetailsViewController: UITextFieldDelegate {
                                 self.loanTypeArr = mainResponse["data"] as! [[String: Any]]
                                 self.callPopup(tag: textField.tag)
                             } else {
-                                PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Opps", descriptionText: "No loan types found.", okBtnTitle: "OK", activityType: .show)
+                                PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Opps", descriptionText: "No loan types found.", okBtnTitle: "OK", activityType: .show, selected: { (_, _) in })
                             }
                         }
                         
@@ -756,7 +756,7 @@ extension AdvancePropertyDetailsViewController: UITextFieldDelegate {
                             self.currencyArr = mainResponse["data"] as! [[String: Any]]
                             self.callPopup(tag: textField.tag)
                         } else {
-                            PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Opps", descriptionText: "No currency types available.", okBtnTitle: "OK", activityType: .show)
+                            PopupOneOptionViewController.showPopUpOneOptions(onParentViewController: self, alertText: "Opps", descriptionText: "No currency types available.", okBtnTitle: "OK", activityType: .show, selected: { (_, _) in })
                         }
                     }
                     
